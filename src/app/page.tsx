@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/home/Hero';
+import { LatestArticle } from '@/components/home/LatestArticle';
 import { ProjectSpreads } from '@/components/ui/ProjectSpreads';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { FOCUS_AREAS } from '@/content/focus';
@@ -34,6 +35,8 @@ export default function HomePage() {
       />
 
       <Hero />
+
+      <LatestArticle />
 
       {/* Кратко о Дмитрии Пятакове */}
       <section className="section band" aria-labelledby="about-heading">

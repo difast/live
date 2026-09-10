@@ -1,5 +1,4 @@
 import { ARTICLES } from '@/content/articles';
-import { VIDEOS } from '@/content/videos';
 
 /**
  * Единый источник правды о сайте и о персоне.
@@ -98,14 +97,18 @@ export const CONFIRMED_SOCIALS = SOCIALS.filter(
 type NavItem = { href: string; label: string };
 
 /**
- * Навигация. Разделы со своим контентом добавляются только когда в них
- * есть материалы — пустой пункт меню ведёт в никуда.
+ * Навигация.
+ *
+ * «Статьи» появляются только при наличии материалов. «Видео» стоят в меню
+ * всегда: страница объясняет своё состояние и ведёт на каналы, поэтому
+ * пункт не оказывается пустым. От индексации сама страница закрыта, пока
+ * роликов нет — см. src/app/videos/page.tsx.
  */
 export const NAV: NavItem[] = [
   { href: '/about', label: 'Биография' },
   { href: '/projects', label: 'Проекты' },
   ...(ARTICLES.length > 0 ? [{ href: '/articles', label: 'Статьи' }] : []),
-  ...(VIDEOS.length > 0 ? [{ href: '/videos', label: 'Видео' }] : []),
+  { href: '/videos', label: 'Видео' },
   { href: '/media', label: 'Медиа' },
   { href: '/contact', label: 'Контакты' },
 ];
