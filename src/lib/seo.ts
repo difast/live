@@ -73,6 +73,10 @@ export function buildMetadata({
 /** Метаданные, общие для всего сайта. Задаются один раз в корневом layout. */
 export const rootMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  // Подтверждение прав в Яндекс.Вебмастере. Next отдаёт это как
+  // <meta name="yandex-verification">. Тег должен оставаться на месте:
+  // Яндекс перепроверяет его и снимает подтверждение, если он исчез.
+  verification: { yandex: 'b718faeb1d753394' },
   applicationName: SITE_NAME,
   authors: [{ name: PERSON.name, url: SITE_URL }],
   creator: PERSON.name,
