@@ -11,7 +11,7 @@ import styles from './Contact.module.css';
 
 const TITLE = 'Контакты — Дмитрий Пятаков';
 const DESCRIPTION =
-  'Как связаться с Дмитрием Пятаковым: почта ceo@oneononehq.com, Telegram, YouTube и Instagram.';
+  `Как связаться с Дмитрием Пятаковым: почта ${PERSON.email}, Telegram, YouTube и Instagram.`;
 
 const CRUMBS: Crumb[] = [
   { name: 'Главная', path: '/' },

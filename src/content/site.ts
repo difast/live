@@ -2,10 +2,10 @@
  * Единый источник правды о сайте и о персоне.
  * Все канонические URL, метаданные, JSON-LD, sitemap и llms.txt читают отсюда.
  *
- * TODO(домен): подставить реальный продакшн-домен — здесь либо в NEXT_PUBLIC_SITE_URL.
- * Это единственное место, где домен задаётся.
+ * Домен задаётся здесь либо переопределяется через NEXT_PUBLIC_SITE_URL.
+ * Это единственное место, где он задаётся.
  */
-const FALLBACK_SITE_URL = 'https://pyatakov.com';
+const FALLBACK_SITE_URL = 'https://pyatakovofficial.ru';
 
 export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_SITE_URL
@@ -31,7 +31,7 @@ export const PERSON = {
   role: 'Предприниматель и создатель технологических компаний и продуктов',
   summary:
     'Дмитрий Пятаков — предприниматель и создатель технологических компаний и продуктов. Создаёт компании, продукты и системы на стыке технологий, бизнеса и AI.',
-  email: 'ceo@oneononehq.com',
+  email: 'hello@pyatakovofficial.ru',
   /** Объявленный путь портрета. Реальный файл ищется по PORTRAIT_BASE. */
   portrait: `${PORTRAIT_BASE}.jpg`,
   portraitAlt: 'Дмитрий Пятаков — предприниматель и создатель технологических компаний',

@@ -79,7 +79,6 @@ public/images/            изображения бренда, см. README в �
 
 | Что                        | Где                                             |
 | -------------------------- | ----------------------------------------------- |
-| Продакшн-домен             | `NEXT_PUBLIC_SITE_URL` или `src/content/site.ts` |
 | Фотография                 | `public/images/dmitry-pyatakov/portrait.*`       |
 | Баннер YouTube             | `public/images/dmitry-pyatakov/youtube-banner.*` |
 | Ссылки VK и Rutube         | `src/content/site.ts` → `SOCIALS`                |
@@ -98,11 +97,12 @@ public/images/            изображения бренда, см. README в �
 
 ### Домен
 
-Домен задаётся **в одном месте** и используется в canonical, `sitemap.xml`,
-`robots.txt`, Open Graph и JSON-LD:
+Продакшн-домен — `pyatakovofficial.ru`. Задаётся **в одном месте**
+(`src/content/site.ts`) и используется в canonical, `sitemap.xml`,
+`robots.txt`, Open Graph и JSON-LD. Переопределяется переменной окружения:
 
 ```bash
-NEXT_PUBLIC_SITE_URL=https://ваш-домен
+NEXT_PUBLIC_SITE_URL=https://pyatakovofficial.ru
 ```
 
 Без переменной берётся значение по умолчанию из `src/content/site.ts`.
