@@ -120,6 +120,12 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                     </Link>
                   </dd>
                 </div>
+                {project.legalName && (
+                  <div className={styles.metaRow}>
+                    <dt className={styles.metaLabel}>Юрлицо</dt>
+                    <dd className={styles.metaValue}>{project.legalName}</dd>
+                  </div>
+                )}
                 <div className={styles.metaRow}>
                   <dt className={styles.metaLabel}>Сайт</dt>
                   <dd className={styles.metaValue}>

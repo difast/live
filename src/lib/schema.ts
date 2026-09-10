@@ -101,6 +101,15 @@ export function projectSchema(project: Project): JsonLdObject {
     schema.award = project.achievement.full;
   }
 
+  // Юридическое лицо и дата основания — сильные сигналы для entity-графа.
+  if (project.legalName) {
+    schema.legalName = project.legalName;
+  }
+
+  if (project.foundingDate) {
+    schema.foundingDate = project.foundingDate;
+  }
+
   return schema;
 }
 
