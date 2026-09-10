@@ -1,0 +1,38 @@
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  border: 1px solid var(--hairline);
+  background-color: var(--paper-sunken);
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* Заглушка: фирменный тёмный тон, инициалы, без иллюстраций и «AI-портретов». */
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 0.75rem;
+  justify-items: center;
+  background-color: var(--brand-deep);
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.initials {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.note {
+  font-size: 0.688rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}

@@ -1,0 +1,84 @@
+.hero {
+  padding-block: clamp(3.5rem, 2rem + 6vw, 7rem) var(--space-2xl);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-l);
+  align-items: center;
+}
+
+@media (min-width: 62rem) {
+  .grid {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+}
+
+.name {
+  margin-top: var(--space-s);
+  font-size: var(--step-5);
+}
+
+.role {
+  margin-top: var(--space-s);
+  font-size: var(--step-2);
+  line-height: 1.35;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  max-width: 20ch;
+  font-weight: 400;
+}
+
+.statement {
+  margin-top: var(--space-s);
+  max-width: 52ch;
+  color: var(--ink-soft);
+  font-size: var(--step-1);
+  line-height: 1.55;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-m);
+}
+
+.follow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-s);
+  margin-top: var(--space-m);
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--hairline);
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+}
+
+.followLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+}
+
+.followLinks a {
+  color: var(--ink-soft);
+  transition: color var(--duration) var(--ease);
+}
+
+.followLinks a:hover {
+  color: var(--accent);
+}
+
+.portrait {
+  display: none;
+}
+
+@media (min-width: 62rem) {
+  .portrait {
+    display: block;
+  }
+}

@@ -1,0 +1,162 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  min-height: 4.25rem;
+}
+
+/* Имя-логотип: фирменный знак + имя. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-weight: 500;
+  font-size: var(--step-0);
+  letter-spacing: -0.012em;
+  white-space: nowrap;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 3px;
+  background-color: var(--brand-deep);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color var(--duration) var(--ease);
+}
+
+.brand:hover .mark {
+  background-color: var(--accent);
+}
+
+.nav {
+  display: none;
+}
+
+@media (min-width: 52rem) {
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+  }
+}
+
+.navLink {
+  position: relative;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  padding-block: 0.25rem;
+  transition: color var(--duration) var(--ease);
+}
+
+.navLink:hover {
+  color: var(--ink);
+}
+
+.navLink[aria-current='page'] {
+  color: var(--ink);
+}
+
+/* Тонкая отметка активного раздела вместо подсветки. */
+.navLink[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.125rem;
+  height: 1px;
+  background-color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.social {
+  display: none;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  transition: color var(--duration) var(--ease);
+}
+
+.social:hover {
+  color: var(--accent);
+}
+
+@media (min-width: 68rem) {
+  .social {
+    display: inline-block;
+  }
+}
+
+/* Мобильная навигация: раскрывающийся список, без оверлеев и анимаций. */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  margin-right: calc(-0.75rem + 1px);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: var(--step--1);
+  color: var(--ink);
+}
+
+@media (min-width: 52rem) {
+  .toggle {
+    display: none;
+  }
+}
+
+.mobileNav {
+  border-top: 1px solid var(--hairline);
+  padding-block: var(--space-xs) var(--space-s);
+}
+
+@media (min-width: 52rem) {
+  .mobileNav {
+    display: none;
+  }
+}
+
+.mobileList {
+  display: grid;
+}
+
+.mobileLink {
+  display: block;
+  padding-block: 0.75rem;
+  font-size: var(--step-1);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.mobileLink[aria-current='page'] {
+  color: var(--accent);
+}
+
+.mobileSocials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  padding-top: var(--space-s);
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+}

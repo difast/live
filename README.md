@@ -1,0 +1,111 @@
+# Дмитрий Пятаков — официальный сайт
+
+Персональный сайт: предприниматель и создатель технологических компаний и
+продуктов. Многостраничный, статический, с упором на SEO и корректное
+представление сущности «Дмитрий Пятаков» поисковым и AI-системам.
+
+## Стек
+
+- **Next.js 15** (App Router), React 19, TypeScript strict
+- Все страницы **пререндерятся статически** на сборке (SSG)
+- CSS Modules + токены дизайн-системы в `src/app/globals.css`, без CSS-фреймворков
+- Шрифты Inter и Source Serif 4 — самохостинг через `next/font`, без внешних
+  запросов в рантайме
+- Внешних runtime-зависимостей нет
+
+## Запуск
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # продакшн-сборка
+npm run start      # запуск собранного сайта
+npm run typecheck  # проверка типов
+npm run lint
+```
+
+## Структура
+
+```
+src/
+  app/                    маршруты (App Router)
+    page.tsx              главная
+    about/                о Дмитрии Пятакове
+    projects/             индекс проектов
+    projects/[slug]/      страница проекта (генерируется из данных)
+    media/                социальные сети, YouTube-баннер
+    contact/              контакты
+    not-found.tsx         404 (noindex)
+    sitemap.ts            sitemap.xml
+    robots.ts             robots.txt
+    manifest.ts           manifest.webmanifest
+    llms.txt/route.ts     llms.txt
+    icon.svg              favicon
+    apple-icon.png        иконка для iOS
+  content/                весь контент сайта
+    site.ts               домен, персона, социальные сети, навигация
+    projects.ts           проекты
+    focus.ts              направления работы
+    timeline.ts           хронология (пустая, ждёт реальных фактов)
+    collections.ts        архитектура будущих разделов
+  lib/
+    seo.ts                сборка метаданных: title, description, canonical, OG, X
+    schema.ts             JSON-LD: Person, WebSite, WebPage, BreadcrumbList, проекты
+    assets.ts             проверка наличия изображений на сборке
+  components/             Header, Footer, Breadcrumbs, PageHeader, ProjectIndex, Portrait
+public/images/            изображения бренда, см. README в папке
+```
+
+## Что нужно заполнить
+
+| Что                        | Где                                             |
+| -------------------------- | ----------------------------------------------- |
+| Продакшн-домен             | `NEXT_PUBLIC_SITE_URL` или `src/content/site.ts` |
+| Фотография                 | `public/images/dmitry-pyatakov/portrait.jpg`     |
+| Баннер YouTube             | `public/images/dmitry-pyatakov/youtube-banner.jpg` |
+| Ссылки VK и Rutube         | `src/content/site.ts` → `SOCIALS`                |
+| Хронология                 | `src/content/timeline.ts`                        |
+
+Изображения подхватываются автоматически: пока файла нет, рендерится заглушка
+тех же пропорций, поэтому вёрстка не сдвигается. Правок кода не требуется.
+
+### Домен
+
+Домен задаётся **в одном месте** и используется в canonical, `sitemap.xml`,
+`robots.txt`, Open Graph и JSON-LD:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://ваш-домен
+```
+
+Без переменной берётся значение по умолчанию из `src/content/site.ts`.
+
+## Как добавить проект
+
+Добавить объект в `PROJECTS` (`src/content/projects.ts`). Страница
+`/projects/<slug>`, метаданные, JSON-LD, хлебные крошки, перелинковка и
+запись в `sitemap.xml` создадутся автоматически.
+
+## Как включить раздел статей, интервью, публикаций или выступлений
+
+Разделы намеренно не опубликованы, пока пусты: пустые страницы вредят
+индексации. Порядок включения описан в `src/content/collections.ts`.
+
+## Принцип по содержанию
+
+На сайте только достоверные данные. Ничего не выдумывается: если факта нет —
+в коде стоит `TODO` и место под заполнение. Неподтверждённые ссылки на
+профили не публикуются и не попадают в `sameAs`.
+
+## Деплой
+
+Timeweb, автоматически по пушу в `main`.
+
+- Команда сборки: `npm run build`
+- Команда запуска: `npm run start`
+- Node.js: 20.9+
+- Переменная окружения: `NEXT_PUBLIC_SITE_URL`
+
+Если приложение разворачивается как статический сайт, а не как Node-приложение,
+добавьте `output: 'export'` в `next.config.ts` — весь сайт статический,
+серверная часть не требуется — и укажите каталог сборки `out`.

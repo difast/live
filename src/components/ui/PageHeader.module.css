@@ -1,0 +1,26 @@
+.header {
+  padding-block: var(--space-xl) var(--space-l);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-s);
+}
+
+@media (min-width: 60rem) {
+  .grid {
+    grid-template-columns: 12rem minmax(0, 1fr);
+    gap: var(--space-m);
+    align-items: start;
+  }
+}
+
+.title {
+  max-width: 20ch;
+}
+
+.intro {
+  margin-top: var(--space-s);
+  max-width: 56ch;
+}
