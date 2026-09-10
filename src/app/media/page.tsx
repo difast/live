@@ -4,7 +4,12 @@ import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { JsonLd } from '@/components/ui/JsonLd';
-import { SOCIALS, YOUTUBE_BANNER_BASE, type Social } from '@/content/site';
+import {
+  CONFIRMED_SOCIALS,
+  SOCIALS,
+  YOUTUBE_BANNER_BASE,
+  type Social,
+} from '@/content/site';
 import { buildMetadata } from '@/lib/seo';
 import { resolveImage } from '@/lib/assets';
 import { breadcrumbSchema, graph, webPageSchema, type Crumb } from '@/lib/schema';
@@ -31,9 +36,17 @@ function byKey(key: Social['key']): Social {
   return social;
 }
 
+/** «Telegram, Instagram и Rutube» — заголовок собирается из самого списка. */
+function joinNames(names: string[]): string {
+  if (names.length < 2) return names.join('');
+  return `${names.slice(0, -1).join(', ')} и ${names[names.length - 1]}`;
+}
+
 export default function MediaPage() {
   const youtube = byKey('youtube');
-  const secondary = [byKey('instagram'), byKey('telegram')];
+  // Остальные подтверждённые площадки, кроме YouTube: список ведут данные,
+  // поэтому новая площадка появляется здесь без правок вёрстки.
+  const secondary = CONFIRMED_SOCIALS.filter((s) => s.key !== 'youtube');
   const pending = SOCIALS.filter((s) => s.url === null);
   const banner = resolveImage(YOUTUBE_BANNER_BASE);
 
@@ -111,7 +124,7 @@ export default function MediaPage() {
           <div className="section-head">
             <div>
               <p className="label">Ещё площадки</p>
-              <h2 id="secondary-heading">Instagram и Telegram</h2>
+              <h2 id="secondary-heading">{joinNames(secondary.map((s) => s.name))}</h2>
             </div>
           </div>
 

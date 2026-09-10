@@ -37,7 +37,7 @@ export const PERSON = {
   portraitAlt: 'Дмитрий Пятаков — предприниматель и создатель технологических компаний',
 } as const;
 
-export type SocialKey = 'youtube' | 'instagram' | 'telegram' | 'vk' | 'rutube';
+export type SocialKey = 'youtube' | 'instagram' | 'telegram' | 'rutube';
 
 export type Social = {
   key: SocialKey;
@@ -49,12 +49,10 @@ export type Social = {
   description: string;
   /**
    * Подтверждённый URL профиля.
-   * null — ссылка ещё не подтверждена: карточка рендерится, но без ссылки.
+   * null — ссылка ещё не подтверждена: строка рендерится, но без ссылки.
    * Такие профили НЕ попадают в sameAs, чтобы не ломать entity-граф.
    */
   url: string | null;
-  /** Показывать в компактных блоках (шапка, футер, главная). */
-  primary: boolean;
 };
 
 export const SOCIALS: Social[] = [
@@ -64,7 +62,6 @@ export const SOCIALS: Social[] = [
     handleTitle: 'Дмитрий Пятаков',
     description: 'Создаёт технологические компании и продукты с AI.',
     url: 'https://youtube.com/@pyatakov.official',
-    primary: true,
   },
   {
     key: 'telegram',
@@ -73,7 +70,6 @@ export const SOCIALS: Social[] = [
     description:
       'Предпринимательство, технологии, стартапы, AI и путь создания бизнеса.',
     url: 'https://t.me/pyatakov_official',
-    primary: true,
   },
   {
     key: 'instagram',
@@ -81,25 +77,13 @@ export const SOCIALS: Social[] = [
     handleTitle: 'Дмитрий Пятаков | AI и стартапы',
     description: 'Короткие материалы о предпринимательстве, технологиях и продуктах.',
     url: 'https://instagram.com/pyatakov.official',
-    primary: true,
-  },
-  {
-    key: 'vk',
-    name: 'VK',
-    handleTitle: 'Дмитрий Пятаков',
-    description: 'Официальная страница Дмитрия Пятакова.',
-    // TODO(vk): добавить подтверждённый URL. Не подставлять предполагаемый адрес.
-    url: null,
-    primary: false,
   },
   {
     key: 'rutube',
     name: 'Rutube',
     handleTitle: 'Дмитрий Пятаков',
     description: 'Видео и материалы Дмитрия Пятакова.',
-    // TODO(rutube): добавить подтверждённый URL. Не подставлять предполагаемый адрес.
-    url: null,
-    primary: false,
+    url: 'https://rutube.ru/channel/81140376/',
   },
 ];
 
