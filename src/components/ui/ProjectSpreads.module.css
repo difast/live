@@ -123,6 +123,11 @@
   text-align: right;
 }
 
+/* Публичное признание проекта — выделено акцентом, но без плашек. */
+.award {
+  color: var(--accent);
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;

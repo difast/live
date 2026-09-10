@@ -19,6 +19,13 @@ export type ProjectSchemaType =
  */
 export type ProjectTone = { tint: string; deep: string };
 
+/**
+ * Публичное признание проекта. Заполняется только подтверждёнными фактами:
+ * `short` — компактная формулировка для строк-справок,
+ * `full` — полная для страницы проекта и Schema.org (award).
+ */
+export type ProjectAchievement = { short: string; full: string };
+
 export type ProjectSection = {
   heading: string;
   /** Абзацы текста. */
@@ -45,6 +52,7 @@ export type Project = {
   role: string;
   schemaType: ProjectSchemaType;
   tone: ProjectTone;
+  achievement?: ProjectAchievement;
   /** Дополнительный тип, если один тип не описывает сущность полностью. */
   additionalSchemaType?: ProjectSchemaType;
   /** Для SoftwareApplication. */
@@ -107,11 +115,15 @@ export const PROJECTS: Project[] = [
     tagline:
       'Технологическая платформа для управления автономными роботизированными системами.',
     description:
-      'Mevratek — технологическая платформа для управления автономными роботизированными системами. Серверная платформа выступает как «мозг» системы, локальная программа на устройстве — как «тело».',
+      'Mevratek — технологическая платформа для управления автономными роботизированными системами. Серверная платформа выступает как «мозг» системы, локальная программа на устройстве — как «тело». Проект занял 36-е место среди 48 478 идей форума «Сильные идеи для нового времени» 2026 года.',
     website: 'https://mevratek.ru',
     websiteLabel: 'mevratek.ru',
     role: 'Основатель',
     tone: { tint: '#e6e4e0', deep: '#343330' },
+    achievement: {
+      short: '36-е место из 48 478 · «Сильные идеи для нового времени», 2026',
+      full: '36-е место среди 48 478 идей форума «Сильные идеи для нового времени» 2026 года.',
+    },
     schemaType: 'SoftwareApplication',
     additionalSchemaType: 'Organization',
     applicationCategory: 'DeveloperApplication',
@@ -136,6 +148,12 @@ export const PROJECTS: Project[] = [
         heading: 'Назначение',
         body: [
           'Такое разделение позволяет развивать логику управления независимо от конкретного устройства и обновлять её централизованно, не переписывая программное обеспечение на стороне робота.',
+        ],
+      },
+      {
+        heading: 'Признание',
+        body: [
+          'Mevratek занял 36-е место среди 48 478 идей форума «Сильные идеи для нового времени» 2026 года.',
         ],
       },
     ],

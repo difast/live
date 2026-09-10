@@ -96,6 +96,11 @@ export function projectSchema(project: Project): JsonLdObject {
     schema.operatingSystem = 'Web';
   }
 
+  // Награды объявляются только там, где есть подтверждённый факт.
+  if (project.achievement) {
+    schema.award = project.achievement.full;
+  }
+
   return schema;
 }
 

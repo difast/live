@@ -102,6 +102,10 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             <div>
               <p className={styles.tagline}>{project.tagline}</p>
 
+              {project.achievement && (
+                <p className={styles.award}>{project.achievement.full}</p>
+              )}
+
               <dl className={styles.meta}>
                 <div className={styles.metaRow}>
                   <dt className={styles.metaLabel}>Статус</dt>

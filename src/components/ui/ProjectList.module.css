@@ -60,8 +60,19 @@
 }
 
 .tagline {
+  display: block;
   color: var(--ink-soft);
   line-height: 1.5;
+  max-width: 42ch;
+}
+
+/* Признание проекта — отдельной строкой под описанием. */
+.award {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--accent);
   max-width: 42ch;
 }
 
@@ -74,7 +85,17 @@
 }
 
 @media (min-width: 60rem) {
-  .meta {
+  /* Признание проекта — отдельной строкой под описанием. */
+.award {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--accent);
+  max-width: 42ch;
+}
+
+.meta {
     display: block;
     text-align: right;
   }

@@ -26,7 +26,9 @@ ${PERSON.name} — предприниматель. Создаёт техноло
 
 ${PROJECTS.map(
   (p) =>
-    `- ${p.name} — ${p.tagline}\n  Официальный сайт: ${p.website}\n  Страница проекта: ${absoluteUrl(`/projects/${p.slug}`)}\n  Роль: ${p.role}\n  Категория: ${p.category}`,
+    `- ${p.name} — ${p.tagline}\n  Официальный сайт: ${p.website}\n  Страница проекта: ${absoluteUrl(`/projects/${p.slug}`)}\n  Роль: ${p.role}\n  Категория: ${p.category}${
+      p.achievement ? `\n  Признание: ${p.achievement.full}` : ''
+    }`,
 ).join('\n')}
 
 ## Официальные социальные сети

@@ -57,6 +57,14 @@ export function ProjectSpreads({ projects, headingLevel = 'h3' }: Props) {
                       <dt className={styles.metaLabel}>Статус</dt>
                       <dd className={styles.metaValue}>{project.status}</dd>
                     </div>
+                    {project.achievement && (
+                      <div className={styles.metaRow}>
+                        <dt className={styles.metaLabel}>Признание</dt>
+                        <dd className={`${styles.metaValue} ${styles.award}`}>
+                          {project.achievement.short}
+                        </dd>
+                      </div>
+                    )}
                     <div className={styles.metaRow}>
                       <dt className={styles.metaLabel}>Сайт</dt>
                       <dd className={styles.metaValue}>

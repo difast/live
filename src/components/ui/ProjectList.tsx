@@ -18,7 +18,12 @@ export function ProjectList({ projects }: { projects: Project[] }) {
               <span className={styles.category}>{project.category}</span>
             </span>
 
-            <span className={styles.tagline}>{project.tagline}</span>
+            <span>
+              <span className={styles.tagline}>{project.tagline}</span>
+              {project.achievement && (
+                <span className={styles.award}>{project.achievement.short}</span>
+              )}
+            </span>
 
             <span className={styles.meta}>
               <span>{project.role}</span>
