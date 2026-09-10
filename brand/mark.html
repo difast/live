@@ -1,0 +1,31 @@
+<!doctype html>
+<meta charset="utf-8">
+<!--
+  Исходник фирменного знака. Отсюда рендерится brand/mark-master.png (1024×1024),
+  из мастера brand/build-icons.py собирает все размеры.
+
+  Начертание намеренно гротескное, а не дидон заголовков: на 16–32 пикселях
+  засечки Prata превращаются в кашу, а именно эти размеры показывает выдача.
+-->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; }
+  html, body { width: 1024px; height: 1024px; }
+  .mark {
+    width: 1024px;
+    height: 1024px;
+    display: grid;
+    place-items: center;
+    /* --ink и --paper из дизайн-системы сайта */
+    background: #191713;
+    color: #f6f3ed;
+    font-family: 'Golos Text', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 520px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .mark span { transform: translateY(-0.015em); }
+</style>
+<div class="mark"><span>ДП</span></div>
