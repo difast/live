@@ -211,8 +211,8 @@ export const PROJECTS: Project[] = [
     tagline: 'Онлайн-школа программирования для детей и школьников.',
     description:
       'ТехФабрика — онлайн-школа программирования для детей и школьников 7–17 лет. Индивидуальные занятия с преподавателем и семь направлений обучения: от блочного кода до собственных IT-проектов.',
-    website: 'https://techfabrika.ru',
-    websiteLabel: 'techfabrika.ru',
+    website: 'https://tech-fabrika.ru',
+    websiteLabel: 'tech-fabrika.ru',
     role: 'Основатель',
     legalName: 'ООО «ИНТЕГРО»',
     tone: { tint: '#efe7d7', deep: '#5b4626' },
