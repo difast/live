@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { PageHeader } from '@/components/ui/PageHeader';
-import { ProjectIndex } from '@/components/ui/ProjectIndex';
+import { ProjectSpreads } from '@/components/ui/ProjectSpreads';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { PROJECTS } from '@/content/projects';
 import { buildMetadata } from '@/lib/seo';
@@ -52,14 +52,12 @@ export default function ProjectsPage() {
         intro="Действующие проекты Дмитрия Пятакова в технологиях, робототехнике и образовании."
       />
 
-      <section className="section" aria-label="Список проектов">
-        <div className="container">
-          <ProjectIndex projects={PROJECTS} />
-          <p style={{ marginTop: 'var(--space-m)' }}>
-            <Link href="/about" className="arrow-link">
-              О Дмитрии Пятакове
-            </Link>
-          </p>
+      <section aria-label="Список проектов">
+        <ProjectSpreads projects={PROJECTS} headingLevel="h2" />
+        <div className="container" style={{ paddingBlock: 'var(--space-l)' }}>
+          <Link href="/about" className="action">
+            О Дмитрии Пятакове
+          </Link>
         </div>
       </section>
     </>

@@ -1,59 +1,60 @@
 .footer {
-  border-top: 1px solid var(--hairline);
+  border-top: 1px solid var(--ink);
   padding-block: var(--space-xl) var(--space-m);
-  background-color: var(--paper-sunken);
+}
+
+.identity {
+  padding-bottom: var(--space-l);
+  border-bottom: 1px solid var(--rule);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: -0.028em;
+}
+
+.role {
+  margin-top: var(--space-s);
+  color: var(--ink-soft);
+  font-size: var(--step-1);
+  line-height: 1.5;
+  max-width: 34ch;
+}
+
+.email {
+  display: inline-block;
+  margin-top: var(--space-m);
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  letter-spacing: -0.02em;
+  word-break: break-word;
+  transition: color var(--duration) var(--ease);
+}
+
+.email:hover {
+  color: var(--accent);
 }
 
 .grid {
   display: grid;
   gap: var(--space-l);
+  padding-top: var(--space-l);
   grid-template-columns: 1fr;
 }
 
 @media (min-width: 44rem) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 64rem) {
-  .grid {
-    grid-template-columns: 1.6fr 1fr 1fr 1fr;
     gap: var(--space-m);
   }
 }
 
-.identity {
-  max-width: 24rem;
-}
-
-.name {
-  font-family: var(--font-display);
-  font-size: var(--step-2);
-  line-height: 1.2;
-  letter-spacing: -0.018em;
-}
-
-.role {
-  margin-top: var(--space-2xs);
-  color: var(--ink-muted);
-  font-size: var(--step--1);
-  line-height: 1.55;
-}
-
-.email {
-  display: inline-block;
-  margin-top: var(--space-s);
-  font-size: var(--step--1);
-}
-
-.colTitle {
-  margin-bottom: var(--space-s);
-}
-
 .list {
   display: grid;
-  gap: 0.625rem;
+  gap: 0.7rem;
+  margin-top: var(--space-s);
   font-size: var(--step--1);
 }
 
@@ -66,11 +67,6 @@
   color: var(--accent);
 }
 
-.pending {
-  color: var(--ink-muted);
-  opacity: 0.75;
-}
-
 .bottom {
   display: flex;
   flex-wrap: wrap;
@@ -78,7 +74,9 @@
   gap: var(--space-xs);
   margin-top: var(--space-xl);
   padding-top: var(--space-s);
-  border-top: 1px solid var(--hairline);
-  font-size: var(--step--1);
+  border-top: 1px solid var(--rule);
+  font-size: var(--step--2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--ink-muted);
 }

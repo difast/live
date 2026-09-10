@@ -1,26 +1,27 @@
 .header {
-  padding-block: var(--space-xl) var(--space-l);
-  border-bottom: 1px solid var(--hairline);
+  padding-block: clamp(2.75rem, 1.75rem + 4vw, 5rem) var(--space-l);
+  border-bottom: 1px solid var(--ink);
 }
 
 .grid {
   display: grid;
-  gap: var(--space-s);
+  gap: var(--space-m);
+  align-items: end;
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 62rem) {
   .grid {
-    grid-template-columns: 12rem minmax(0, 1fr);
-    gap: var(--space-m);
-    align-items: start;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
   }
 }
 
 .title {
-  max-width: 20ch;
+  margin-top: var(--space-s);
+  font-size: var(--step-4);
+  max-width: 18ch;
 }
 
 .intro {
-  margin-top: var(--space-s);
-  max-width: 56ch;
+  max-width: 44ch;
 }

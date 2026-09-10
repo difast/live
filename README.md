@@ -9,8 +9,8 @@
 - **Next.js 15** (App Router), React 19, TypeScript strict
 - Все страницы **пререндерятся статически** на сборке (SSG)
 - CSS Modules + токены дизайн-системы в `src/app/globals.css`, без CSS-фреймворков
-- Шрифты Inter и Source Serif 4 — самохостинг через `next/font`, без внешних
-  запросов в рантайме
+- Шрифты Prata (дидон для заголовков) и Golos Text (кириллический гротеск) —
+  самохостинг через `next/font`, без внешних запросов в рантайме
 - Внешних runtime-зависимостей нет
 
 ## Запуск
@@ -23,6 +23,21 @@ npm run start      # запуск собранного сайта
 npm run typecheck  # проверка типов
 npm run lint
 ```
+
+## Визуальная система
+
+Редакционная, светлая: тёплая бумага `#f6f3ed`, тёмный текст, один акцент —
+кирпичный `#8a3324`. Заголовки набраны дидоном Prata, текст — гротеском
+Golos Text. Деление страницы держится на тонких линейках и полосах другого
+тона (`.band`), а не на карточках.
+
+Каждый проект имеет собственный визуальный тон (`tone` в `src/content/projects.ts`) —
+им окрашены разворот проекта на `/projects` и шапка его страницы. Чётные
+развороты получают отдельную композицию, поэтому список проектов читается
+ритмично, а не как таблица.
+
+Все значения — токены в `:root`. Правка палитры или масштаба типографики
+делается в одном файле.
 
 ## Структура
 
@@ -52,7 +67,11 @@ src/
     seo.ts                сборка метаданных: title, description, canonical, OG, X
     schema.ts             JSON-LD: Person, WebSite, WebPage, BreadcrumbList, проекты
     assets.ts             проверка наличия изображений на сборке
-  components/             Header, Footer, Breadcrumbs, PageHeader, ProjectIndex, Portrait
+  components/
+    layout/               Header, Footer
+    ui/                   Breadcrumbs, PageHeader, Portrait, JsonLd,
+                          ProjectSpreads (развороты), ProjectList (перечень)
+    home/                 Hero и блоки главной
 public/images/            изображения бренда, см. README в папке
 ```
 

@@ -60,6 +60,10 @@ export default function MediaPage() {
           <h2 id="youtube-heading" className="visually-hidden">
             YouTube
           </h2>
+          <p className="label" style={{ marginBottom: 'var(--space-s)' }}>
+            Главная площадка
+          </p>
+
           <a
             className={styles.feature}
             href={youtube.url ?? undefined}
@@ -73,7 +77,7 @@ export default function MediaPage() {
                   alt="Баннер YouTube-канала Дмитрия Пятакова"
                   fill
                   className={styles.banner}
-                  sizes="(min-width: 76rem) 70rem, 100vw"
+                  sizes="(min-width: 84rem) 76rem, 100vw"
                   priority
                 />
               ) : (
@@ -89,12 +93,12 @@ export default function MediaPage() {
             </div>
 
             <div className={styles.featureBody}>
-              <div>
-                <span className={styles.featurePlatform}>{youtube.name}</span>
-                <p className={styles.featureName}>{youtube.handleTitle}</p>
-                <p className={styles.featureText}>{youtube.description}</p>
-              </div>
-              <span className={styles.cta}>Перейти на YouTube</span>
+              <span>
+                <span className="label">{youtube.name}</span>
+                <span className={styles.featureName}>{youtube.handleTitle}</span>
+              </span>
+              <span className={styles.featureText}>{youtube.description}</span>
+              <span className={styles.go}>Перейти на YouTube ↗</span>
             </div>
           </a>
         </div>
@@ -104,24 +108,27 @@ export default function MediaPage() {
       <section className="section section--tight" aria-labelledby="secondary-heading">
         <div className="container">
           <div className="section-head">
-            <p className="eyebrow">Ещё площадки</p>
-            <h2 id="secondary-heading">Instagram и Telegram</h2>
+            <div>
+              <p className="label">Ещё площадки</p>
+              <h2 id="secondary-heading">Instagram и Telegram</h2>
+            </div>
           </div>
-          <ul className={styles.grid}>
+
+          <ul className={styles.list}>
             {secondary.map((social) => (
-              <li key={social.key}>
+              <li key={social.key} className={styles.item}>
                 <a
-                  className={styles.card}
+                  className={styles.row}
                   href={social.url ?? undefined}
                   target="_blank"
                   rel="noopener noreferrer me"
                 >
-                  <span className={styles.cardHead}>
-                    <span className={styles.cardPlatform}>{social.name}</span>
-                    <span className={styles.cardName}>{social.handleTitle}</span>
-                    <span className={styles.cardText}>{social.description}</span>
+                  <span className={styles.platform}>{social.name}</span>
+                  <span>
+                    <span className={styles.handle}>{social.handleTitle}</span>
+                    <span className={styles.description}>{social.description}</span>
                   </span>
-                  <span className={styles.cta}>Перейти в {social.name}</span>
+                  <span className={styles.go}>Перейти в {social.name} ↗</span>
                 </a>
               </li>
             ))}
@@ -129,24 +136,27 @@ export default function MediaPage() {
         </div>
       </section>
 
-      {/* Площадки без подтверждённой ссылки: карточка готова, ссылки нет. */}
+      {/* Площадки без подтверждённой ссылки: строка готова, ссылки нет. */}
       {pending.length > 0 && (
-        <section className="section section--tight" aria-labelledby="pending-heading">
+        <section className="section section--tight band" aria-labelledby="pending-heading">
           <div className="container">
             <div className="section-head">
-              <p className="eyebrow">Скоро</p>
-              <h2 id="pending-heading">Готовятся</h2>
+              <div>
+                <p className="label">Скоро</p>
+                <h2 id="pending-heading">Готовятся</h2>
+              </div>
             </div>
-            <ul className={styles.grid}>
+
+            <ul className={styles.list}>
               {pending.map((social) => (
-                <li key={social.key}>
-                  <div className={`${styles.card} ${styles.cardPending}`}>
-                    <div className={styles.cardHead}>
-                      <span className={styles.cardPlatform}>{social.name}</span>
-                      <p className={styles.cardName}>{social.handleTitle}</p>
-                      <p className={styles.cardText}>{social.description}</p>
-                    </div>
-                    <p className={styles.pendingNote}>Ссылка будет добавлена</p>
+                <li key={social.key} className={styles.item}>
+                  <div className={`${styles.row} ${styles.pending}`}>
+                    <span className={styles.platform}>{social.name}</span>
+                    <span>
+                      <span className={styles.handle}>{social.handleTitle}</span>
+                      <span className={styles.description}>{social.description}</span>
+                    </span>
+                    <span className={styles.pendingNote}>Ссылка будет добавлена</span>
                   </div>
                 </li>
               ))}
@@ -160,14 +170,14 @@ export default function MediaPage() {
           <h2 id="media-next-heading" className="visually-hidden">
             Дальше
           </h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-m)' }}>
-            <Link href="/about" className="arrow-link">
+          <div className={styles.next}>
+            <Link href="/about" className="action">
               О Дмитрии Пятакове
             </Link>
-            <Link href="/projects" className="arrow-link">
+            <Link href="/projects" className="action action--quiet">
               Проекты
             </Link>
-            <Link href="/contact" className="arrow-link">
+            <Link href="/contact" className="action action--quiet">
               Контакты
             </Link>
           </div>

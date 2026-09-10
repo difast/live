@@ -1,18 +1,15 @@
 import Link from 'next/link';
 import type { Project } from '@/content/projects';
-import styles from './ProjectIndex.module.css';
+import styles from './ProjectList.module.css';
 
-/**
- * Индекс проектов. Одна строка — один проект: номер, название, категория,
- * краткое описание, роль и домен. Вся строка — ссылка на страницу проекта.
- */
-export function ProjectIndex({ projects }: { projects: Project[] }) {
+/** Перечень проектов одной строкой на проект. Вся строка — ссылка. */
+export function ProjectList({ projects }: { projects: Project[] }) {
   return (
     <ul className={styles.list}>
       {projects.map((project) => (
         <li key={project.slug} className={styles.row}>
           <Link href={`/projects/${project.slug}`} className={styles.link}>
-            <span className={styles.index} aria-hidden="true">
+            <span className={`numeral ${styles.numeral}`} aria-hidden="true">
               {project.index}
             </span>
 
@@ -24,7 +21,7 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
             <span className={styles.tagline}>{project.tagline}</span>
 
             <span className={styles.meta}>
-              <span className={styles.role}>{project.role}</span>
+              <span>{project.role}</span>
               <span className={styles.site}>{project.websiteLabel} ↗</span>
             </span>
           </Link>

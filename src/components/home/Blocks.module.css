@@ -1,153 +1,182 @@
-/* Общие блоки главной страницы. */
+/* Секции главной страницы. Каждая композиция своя — не набор одинаковых плиток. */
 
-.focusGrid {
+/* --- Кратко обо мне: крупное утверждение и справка сбоку -------------- */
+.about {
   display: grid;
-  gap: 1px;
-  background-color: var(--hairline);
-  border-block: 1px solid var(--hairline);
+  gap: var(--space-l);
 }
 
-@media (min-width: 40rem) {
-  .focusGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 64rem) {
-  .focusGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Плитки разделены линейками сетки, а не рамками карточек. */
-.focusItem {
-  background-color: var(--paper);
-  padding: var(--space-m) var(--space-s) var(--space-l);
-}
-
-.focusTitle {
-  font-size: var(--step-1);
-  font-weight: 500;
-  letter-spacing: -0.011em;
-}
-
-.focusText {
-  margin-top: var(--space-2xs);
-  color: var(--ink-muted);
-  font-size: var(--step--1);
-  line-height: 1.6;
-  max-width: 36ch;
-}
-
-/* Блок «Кратко обо мне» */
-.aboutGrid {
-  display: grid;
-  gap: var(--space-m);
-}
-
-@media (min-width: 60rem) {
-  .aboutGrid {
-    grid-template-columns: 12rem minmax(0, 1fr) minmax(0, 16rem);
-    gap: var(--space-m);
+@media (min-width: 62rem) {
+  .about {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    gap: clamp(3rem, 6vw, 6rem);
     align-items: start;
   }
 }
 
 .aboutBody p {
-  font-size: var(--step-1);
-  line-height: 1.6;
-  color: var(--ink-soft);
-  max-width: 54ch;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.35;
+  letter-spacing: -0.014em;
+  color: var(--ink);
 }
 
 .aboutBody p + p {
   margin-top: 1em;
+  font-family: var(--font-sans);
+  font-size: var(--step-1);
+  line-height: 1.6;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+}
+
+.aboutSide {
+  display: grid;
+  gap: var(--space-s);
+  padding-top: var(--space-2xs);
 }
 
 .aboutLinks {
   display: grid;
-  gap: 0.75rem;
-  padding-top: 0.4rem;
-  font-size: var(--step--1);
+  gap: var(--space-s);
+  justify-items: start;
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--rule);
 }
 
-/* Социальные сети на главной */
-.socialGrid {
+/* --- Направления работы: нумерованный редакционный перечень ---------- */
+.focusList {
+  border-top: 1px solid var(--ink);
+}
+
+.focusItem {
   display: grid;
-  gap: 1px;
-  background-color: var(--hairline);
-  border-block: 1px solid var(--hairline);
+  gap: var(--space-2xs);
+  padding-block: var(--space-s);
+  border-bottom: 1px solid var(--rule);
 }
 
-@media (min-width: 48rem) {
-  .socialGrid {
-    grid-template-columns: repeat(3, 1fr);
+@media (min-width: 56rem) {
+  .focusItem {
+    grid-template-columns: 4rem minmax(0, 16rem) minmax(0, 1fr);
+    gap: var(--space-m);
+    align-items: baseline;
+    padding-block: var(--space-m);
   }
+}
+
+.focusNumber {
+  font-size: var(--step-1);
+  opacity: 0.6;
+}
+
+.focusTitle {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+}
+
+.focusText {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+/* --- Социальные сети: широкие строки, а не карточки ------------------ */
+.socialList {
+  border-top: 1px solid var(--ink);
 }
 
 .socialItem {
-  display: block;
-  background-color: var(--paper);
-  padding: var(--space-m) var(--space-s);
-  transition: background-color var(--duration) var(--ease);
+  border-bottom: 1px solid var(--rule);
 }
 
-.socialItem:hover {
-  background-color: var(--accent-wash);
-}
-
-.socialName {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-xs);
-  font-size: var(--step-1);
-  font-weight: 500;
-}
-
-.socialArrow {
-  color: var(--ink-muted);
-  transition: color var(--duration) var(--ease), transform var(--duration) var(--ease);
-}
-
-.socialItem:hover .socialArrow {
-  color: var(--accent);
-  transform: translate(2px, -2px);
-}
-
-.socialText {
-  margin-top: var(--space-2xs);
-  color: var(--ink-muted);
-  font-size: var(--step--1);
-  line-height: 1.55;
-  max-width: 34ch;
-}
-
-/* Финальный призыв к контакту */
-.contact {
+.socialLink {
   display: grid;
-  gap: var(--space-m);
-  align-items: end;
+  gap: var(--space-2xs);
+  padding-block: var(--space-s);
+  transition: color var(--duration) var(--ease);
 }
 
-@media (min-width: 60rem) {
-  .contact {
-    grid-template-columns: minmax(0, 1fr) auto;
+@media (min-width: 56rem) {
+  .socialLink {
+    grid-template-columns: minmax(0, 12rem) minmax(0, 1fr) auto;
+    gap: var(--space-m);
+    align-items: baseline;
+    padding-block: var(--space-m);
   }
 }
 
-.contactTitle {
-  max-width: 18ch;
+.socialLink:hover {
+  color: var(--accent);
+}
+
+.socialName {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.socialText {
+  color: var(--ink-soft);
+  line-height: 1.55;
+  max-width: 46ch;
+}
+
+.socialGo {
+  font-size: var(--step--2);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  transition: color var(--duration) var(--ease);
+}
+
+.socialLink:hover .socialGo {
+  color: var(--accent);
+}
+
+/* --- Контакт: крупный адрес как финальное утверждение ---------------- */
+.contact {
+  display: grid;
+  gap: var(--space-m);
+}
+
+@media (min-width: 62rem) {
+  .contact {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: end;
+  }
+}
+
+.email {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.1rem + 2.8vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  margin-top: var(--space-s);
+  word-break: break-word;
+  transition: color var(--duration) var(--ease);
+}
+
+.email:hover {
+  color: var(--accent);
 }
 
 .contactText {
-  margin-top: var(--space-s);
-  max-width: 46ch;
   color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 42ch;
 }
 
-.contactActions {
+.contactLinks {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-xs);
+  gap: var(--space-m);
+  margin-top: var(--space-s);
 }

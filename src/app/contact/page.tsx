@@ -46,7 +46,7 @@ export default function ContactPage() {
         <div className={`container ${styles.grid}`}>
           <div>
             <div className={styles.emailBlock}>
-              <p className="eyebrow">Почта</p>
+              <p className="label">Почта</p>
               <a className={styles.email} href={`mailto:${PERSON.email}`}>
                 {PERSON.email}
               </a>
@@ -56,9 +56,9 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div style={{ marginTop: 'var(--space-m)' }}>
-              <p className="eyebrow">Социальные сети</p>
-              <ul className={styles.list} style={{ marginTop: 'var(--space-s)' }}>
+            <div className={styles.block}>
+              <p className="label">Социальные сети</p>
+              <ul className={styles.list}>
                 {CONFIRMED_SOCIALS.map((social) => (
                   <li key={social.key}>
                     <a
@@ -73,8 +73,8 @@ export default function ContactPage() {
                   </li>
                 ))}
               </ul>
-              <p style={{ marginTop: 'var(--space-s)' }}>
-                <Link href="/media" className="arrow-link">
+              <p className={styles.after}>
+                <Link href="/media" className="action">
                   Все площадки
                 </Link>
               </p>
@@ -82,8 +82,8 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <p className="eyebrow">Проекты</p>
-            <ul className={styles.list} style={{ marginTop: 'var(--space-s)' }}>
+            <p className="label">Проекты</p>
+            <ul className={styles.list}>
               {PROJECTS.map((project) => (
                 <li key={project.slug}>
                   <Link href={`/projects/${project.slug}`} className={styles.row}>
@@ -93,8 +93,8 @@ export default function ContactPage() {
                 </li>
               ))}
             </ul>
-            <p style={{ marginTop: 'var(--space-s)' }}>
-              <Link href="/projects" className="arrow-link">
+            <p className={styles.after}>
+              <Link href="/projects" className="action">
                 Все проекты
               </Link>
             </p>

@@ -25,9 +25,6 @@ export function Header() {
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.brand} aria-label={`${PERSON.name} — на главную`}>
-          <span className={styles.mark} aria-hidden="true">
-            ДП
-          </span>
           {PERSON.name}
         </Link>
 
@@ -52,7 +49,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Telegram ↗
+              Telegram
             </a>
           )}
           <button
@@ -61,8 +58,10 @@ export function Header() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
+            aria-label={open ? 'Закрыть меню' : 'Открыть меню'}
           >
-            {open ? 'Закрыть' : 'Меню'}
+            <span className={styles.toggleBar} />
+            <span className={styles.toggleBar} />
           </button>
         </div>
       </div>
@@ -72,7 +71,7 @@ export function Header() {
           <div className="container">
             <nav aria-label="Мобильная навигация">
               <ul className={styles.mobileList}>
-                {NAV.map((item) => (
+                {NAV.map((item, i) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
@@ -80,6 +79,9 @@ export function Header() {
                       aria-current={isActive(pathname, item.href) ? 'page' : undefined}
                     >
                       {item.label}
+                      <span className={styles.mobileIndex} aria-hidden="true">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
                     </Link>
                   </li>
                 ))}

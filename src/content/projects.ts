@@ -11,6 +11,14 @@ export type ProjectSchemaType =
   | 'SoftwareApplication'
   | 'EducationalOrganization';
 
+/**
+ * Визуальный тон проекта — только слой представления.
+ * Даёт каждому проекту собственный характер внутри общей системы сайта:
+ * `tint` — фон разворота, `deep` — цвет номера и акцентов на нём.
+ * Все оттенки намеренно приглушены до уровня тонированной бумаги.
+ */
+export type ProjectTone = { tint: string; deep: string };
+
 export type ProjectSection = {
   heading: string;
   /** Абзацы текста. */
@@ -36,6 +44,7 @@ export type Project = {
   /** Роль Дмитрия Пятакова в проекте. */
   role: string;
   schemaType: ProjectSchemaType;
+  tone: ProjectTone;
   /** Дополнительный тип, если один тип не описывает сущность полностью. */
   additionalSchemaType?: ProjectSchemaType;
   /** Для SoftwareApplication. */
@@ -56,6 +65,7 @@ export const PROJECTS: Project[] = [
     website: 'https://oneononehq.com',
     websiteLabel: 'oneononehq.com',
     role: 'Основатель',
+    tone: { tint: '#e7e9e8', deep: '#2f3a3c' },
     schemaType: 'SoftwareApplication',
     additionalSchemaType: 'Organization',
     applicationCategory: 'BusinessApplication',
@@ -101,6 +111,7 @@ export const PROJECTS: Project[] = [
     website: 'https://mevratek.ru',
     websiteLabel: 'mevratek.ru',
     role: 'Основатель',
+    tone: { tint: '#e6e4e0', deep: '#343330' },
     schemaType: 'SoftwareApplication',
     additionalSchemaType: 'Organization',
     applicationCategory: 'DeveloperApplication',
@@ -141,6 +152,7 @@ export const PROJECTS: Project[] = [
     website: 'https://tech-fabrika.ru',
     websiteLabel: 'tech-fabrika.ru',
     role: 'Основатель',
+    tone: { tint: '#efe7d7', deep: '#5b4626' },
     schemaType: 'EducationalOrganization',
     additionalSchemaType: 'Organization',
     sections: [
@@ -174,6 +186,7 @@ export const PROJECTS: Project[] = [
     website: 'https://panteonchess.ru',
     websiteLabel: 'panteonchess.ru',
     role: 'Основатель',
+    tone: { tint: '#e4e8e2', deep: '#2f3a2d' },
     schemaType: 'EducationalOrganization',
     additionalSchemaType: 'Organization',
     sections: [

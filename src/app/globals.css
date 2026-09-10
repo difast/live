@@ -1,73 +1,71 @@
 /* =========================================================================
-   Дизайн-система
-   Один акцентный цвет, одна сетка, две гарнитуры, минимум движения.
-   Все значения — токены. Тёмная тема переопределяет только токены.
+   Визуальная система персонального сайта
+   Редакционная, светлая, на тёплой бумаге. Типографика ведёт, цвет молчит.
+
+   Две гарнитуры: Prata — дидон для крупных заголовков, Golos Text —
+   кириллический гротеск для всего остального. Один акцент, тёплые линейки,
+   крупный масштаб. Никаких карточек ради карточек.
    ========================================================================= */
 
 :root {
-  /* Поверхности и текст */
-  --paper: #fbfaf8;
-  --paper-raised: #ffffff;
-  --paper-sunken: #f4f2ee;
-  --ink: #15171b;
-  --ink-soft: #3d424b;
-  --ink-muted: #6a707b;
-  --hairline: #e4e1db;
-  --hairline-strong: #d2cec6;
+  /* --- Бумага и текст ------------------------------------------------- */
+  --paper: #f6f3ed;
+  --paper-raised: #fcfaf6;
+  --paper-deep: #ede7dc;
+  --ink: #191713;
+  --ink-soft: #3c382f;
+  --ink-muted: #6d6659;
+  --rule: #ddd5c6;
+  --rule-soft: #e7e0d3;
+  --rule-strong: #c3b8a3;
 
-  /* Единственный акцент. Взят из фирменного баннера, затемнён под светлый фон. */
-  --accent: #1c4f84;
-  --accent-hover: #143a63;
-  --accent-wash: rgba(28, 79, 132, 0.07);
+  /* Единственный акцент — глубокий кирпичный. Появляется точечно:
+     наведение на ссылку, номер раздела, активный пункт меню. */
+  --accent: #8a3324;
+  --accent-deep: #6b2519;
+  --accent-wash: rgba(138, 51, 36, 0.07);
 
-  /* Фирменный тёмный тон с баннера. Используется как дополнительный цвет:
-     тёмные плашки, знак в шапке, обложка YouTube. Не как фон сайта. */
-  --brand-deep: #101820;
-  --brand-deep-2: #1b2735;
-  --brand-blue: #4a90d9;
+  --focus-ring: #8a3324;
 
-  --focus-ring: #1c4f84;
-
-  /* Типографика */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+  /* --- Гарнитуры ------------------------------------------------------ */
+  --font-display: var(--font-prata), ui-serif, Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-golos), ui-sans-serif, system-ui, -apple-system,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-display: var(--font-serif), ui-serif, Georgia, 'Times New Roman', serif;
 
-  /* Модульная шкала */
+  /* --- Типографическая шкала ------------------------------------------
+     Верх шкалы намеренно крупный: заголовок — главный элемент страницы. */
+  --step--2: 0.75rem;
   --step--1: clamp(0.813rem, 0.79rem + 0.11vw, 0.875rem);
-  --step-0: clamp(0.975rem, 0.95rem + 0.13vw, 1.063rem);
-  --step-1: clamp(1.125rem, 1.07rem + 0.28vw, 1.313rem);
-  --step-2: clamp(1.375rem, 1.26rem + 0.57vw, 1.75rem);
-  --step-3: clamp(1.75rem, 1.53rem + 1.1vw, 2.5rem);
-  --step-4: clamp(2.25rem, 1.79rem + 2.3vw, 3.75rem);
-  --step-5: clamp(2.75rem, 1.95rem + 4vw, 5rem);
+  --step-0: clamp(1rem, 0.97rem + 0.16vw, 1.094rem);
+  --step-1: clamp(1.125rem, 1.06rem + 0.32vw, 1.375rem);
+  --step-2: clamp(1.375rem, 1.24rem + 0.68vw, 1.875rem);
+  --step-3: clamp(1.75rem, 1.44rem + 1.55vw, 2.875rem);
+  --step-4: clamp(2.375rem, 1.7rem + 3.4vw, 4.5rem);
+  --step-5: clamp(3rem, 1.85rem + 5.75vw, 7rem);
+  --step-6: clamp(3.5rem, 1.6rem + 9.5vw, 10rem);
 
-  /* Ритм */
-  --space-2xs: 0.375rem;
-  --space-xs: 0.75rem;
-  --space-s: 1.25rem;
-  --space-m: 2rem;
-  --space-l: 3.25rem;
-  --space-xl: 5rem;
-  --space-2xl: clamp(4.5rem, 3rem + 7vw, 8.5rem);
+  /* --- Ритм ------------------------------------------------------------ */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.875rem;
+  --space-s: 1.375rem;
+  --space-m: 2.25rem;
+  --space-l: 3.75rem;
+  --space-xl: 6rem;
+  --space-2xl: clamp(5rem, 3.2rem + 8vw, 10rem);
 
-  --measure: 68ch;
-  --container: 76rem;
-  --container-narrow: 46rem;
-  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --measure: 62ch;
+  --container: 84rem;
+  --container-text: 44rem;
+  --gutter: clamp(1.25rem, 4.5vw, 4rem);
 
-  --radius: 4px;
-  --radius-l: 8px;
+  --ease: cubic-bezier(0.33, 0, 0.15, 1);
+  --duration: 240ms;
 
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration: 200ms;
-
-  /* Сайт светлый. Тёмная тема намеренно не включается автоматически:
-     фирменный тёмный тон работает как акцент на светлом фоне. */
   color-scheme: light;
 }
 
-/* ---------------------------------------------------------------- Сброс */
+/* ------------------------------------------------------------- Сброс */
 
 *,
 *::before,
@@ -86,7 +84,7 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--step-0);
-  line-height: 1.65;
+  line-height: 1.6;
   font-synthesis-weight: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -129,34 +127,36 @@ button {
   color: inherit;
 }
 
-/* ------------------------------------------------------- Базовый набор */
+/* --------------------------------------------------- Базовая типографика */
 
+/* Prata существует только в одном начертании и рассчитана на крупный кегль.
+   Ниже ~28px используется гротеск. */
+.display,
 h1,
-h2,
-h3 {
+h2 {
+  font-family: var(--font-display);
   font-weight: 400;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 h1 {
-  font-family: var(--font-display);
   font-size: var(--step-4);
-  line-height: 1.06;
-  letter-spacing: -0.022em;
+  line-height: 1.02;
 }
 
 h2 {
-  font-family: var(--font-display);
   font-size: var(--step-3);
-  line-height: 1.15;
-  letter-spacing: -0.018em;
+  line-height: 1.08;
 }
 
 h3 {
+  font-family: var(--font-sans);
   font-size: var(--step-1);
   font-weight: 500;
   line-height: 1.3;
-  letter-spacing: -0.011em;
+  letter-spacing: -0.008em;
+  text-wrap: balance;
 }
 
 p {
@@ -164,14 +164,14 @@ p {
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--ink);
   color: var(--paper);
 }
 
 :focus-visible {
   outline: 2px solid var(--focus-ring);
-  outline-offset: 3px;
-  border-radius: 2px;
+  outline-offset: 4px;
+  border-radius: 1px;
 }
 
 /* --------------------------------------------------- Примитивы разметки */
@@ -183,8 +183,8 @@ p {
   padding-inline: var(--gutter);
 }
 
-.container--narrow {
-  max-width: var(--container-narrow);
+.container--text {
+  max-width: calc(var(--container-text) + var(--gutter) * 2);
 }
 
 .section {
@@ -195,23 +195,36 @@ p {
   padding-block: var(--space-xl);
 }
 
-.section + .section {
-  border-top: 1px solid var(--hairline);
+/* Полоса другого тона — чтобы делить страницу без рамок и карточек. */
+.band {
+  background-color: var(--paper-deep);
+}
+
+.rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
 }
 
 .measure {
   max-width: var(--measure);
 }
 
-/* Надзаголовок раздела: мелкие прописные с разрядкой. */
-.eyebrow {
+/* Мелкая прописная метка — единственный «интерфейсный» элемент системы. */
+.label {
   display: block;
-  font-size: 0.688rem;
+  font-size: var(--step--2);
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink-muted);
-  font-feature-settings: 'tnum' 1;
+}
+
+/* Номер раздела или проекта. Крупный, дидоном, акцентом. */
+.numeral {
+  font-family: var(--font-display);
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--accent);
+  line-height: 1;
 }
 
 .lead {
@@ -220,39 +233,46 @@ p {
   color: var(--ink-soft);
 }
 
-.prose p + p {
-  margin-top: 1em;
-}
-
 .prose {
   color: var(--ink-soft);
 }
 
-/* Заголовок раздела с надзаголовком слева — сетка вместо декора. */
+.prose p + p {
+  margin-top: 1.15em;
+}
+
+/*
+  Заголовок раздела: метка сверху, крупный заголовок под ней.
+  Никаких боковых колонок — заголовок начинается от края текстового блока.
+*/
 .section-head {
   display: grid;
   gap: var(--space-s);
-  grid-template-columns: 1fr;
   margin-bottom: var(--space-l);
+  padding-bottom: var(--space-s);
+  border-bottom: 1px solid var(--rule);
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 62rem) {
   .section-head {
-    grid-template-columns: 12rem 1fr;
-    gap: var(--space-m);
-    align-items: baseline;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    gap: var(--space-l);
+    align-items: end;
   }
+}
+
+.section-head h2 {
+  margin-top: var(--space-xs);
 }
 
 /* ------------------------------------------------------------- Ссылки */
 
-/* Текстовая ссылка: подчёркивание тоньше базовой линии, акцент только на hover. */
 .link {
-  color: var(--ink);
+  color: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--hairline-strong);
+  text-decoration-color: var(--rule-strong);
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
+  text-underline-offset: 0.2em;
   transition: color var(--duration) var(--ease),
     text-decoration-color var(--duration) var(--ease);
 }
@@ -262,83 +282,59 @@ p {
   text-decoration-color: var(--accent);
 }
 
-/* Ссылка со стрелкой — основной способ увести на внешний ресурс. */
-.arrow-link {
+/*
+  Основной способ увести со страницы. Подчёркивание растёт из ничего —
+  единственная анимация, которая действительно что-то сообщает.
+*/
+.action {
   display: inline-flex;
   align-items: baseline;
-  gap: 0.5em;
-  color: var(--ink);
+  gap: 0.55em;
+  font-size: var(--step--1);
   font-weight: 500;
-  transition: color var(--duration) var(--ease);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding-bottom: 0.35em;
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+  transition: color var(--duration) var(--ease),
+    background-size var(--duration) var(--ease);
 }
 
-.arrow-link::after {
+.action::after {
   content: '→';
-  display: inline-block;
-  color: var(--ink-muted);
-  transition: transform var(--duration) var(--ease),
-    color var(--duration) var(--ease);
+  font-size: 1.05em;
+  transition: transform var(--duration) var(--ease);
 }
 
-.arrow-link:hover {
+.action:hover {
   color: var(--accent);
+  background-image: linear-gradient(var(--accent), var(--accent));
 }
 
-.arrow-link:hover::after {
-  transform: translateX(3px);
-  color: var(--accent);
+.action:hover::after {
+  transform: translateX(4px);
 }
 
-.arrow-link--external::after {
+.action--external::after {
   content: '↗';
 }
 
-.arrow-link--external:hover::after {
-  transform: translate(2px, -2px);
+.action--external:hover::after {
+  transform: translate(3px, -3px);
 }
 
-/* ------------------------------------------------------------- Кнопки */
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5em;
-  padding: 0.75rem 1.375rem;
-  border: 1px solid transparent;
-  border-radius: var(--radius);
-  font-size: var(--step--1);
-  font-weight: 500;
-  letter-spacing: 0.005em;
-  cursor: pointer;
-  transition: background-color var(--duration) var(--ease),
-    border-color var(--duration) var(--ease), color var(--duration) var(--ease);
-}
-
-.button--primary {
-  background-color: var(--ink);
-  color: var(--paper);
-}
-
-.button--primary:hover {
-  background-color: var(--accent);
-}
-
-.button--secondary {
-  border-color: var(--hairline-strong);
-  color: var(--ink);
-}
-
-.button--secondary:hover {
-  border-color: var(--ink);
-  background-color: var(--accent-wash);
-}
-
-.button[aria-disabled='true'] {
-  cursor: not-allowed;
-  border-color: var(--hairline);
+/* Приглушённый вариант — для второстепенных переходов. */
+.action--quiet {
   color: var(--ink-muted);
-  background-color: transparent;
+  background-size: 0% 1px;
+}
+
+.action--quiet:hover {
+  background-size: 100% 1px;
 }
 
 /* ---------------------------------------------------------- Утилиты */
@@ -355,17 +351,15 @@ p {
   border: 0;
 }
 
-/* Ссылка «к содержимому» для клавиатурной навигации. */
 .skip-link {
   position: absolute;
   top: 0;
   left: var(--gutter);
   z-index: 100;
-  padding: 0.625rem 1rem;
+  padding: 0.75rem 1.25rem;
   background: var(--ink);
   color: var(--paper);
   font-size: var(--step--1);
-  border-radius: 0 0 var(--radius) var(--radius);
   transform: translateY(-110%);
   transition: transform var(--duration) var(--ease);
 }
@@ -374,17 +368,17 @@ p {
   transform: translateY(0);
 }
 
-/* Появление секции при скролле. Полностью необязательно: без него всё видно. */
+/* Мягкое появление при прокрутке. Убрать анимацию — ничего не изменится. */
 .reveal {
-  animation: reveal 620ms var(--ease) both;
+  animation: reveal 700ms var(--ease) both;
   animation-timeline: view();
-  animation-range: entry 0% cover 22%;
+  animation-range: entry 0% cover 20%;
 }
 
 @keyframes reveal {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;

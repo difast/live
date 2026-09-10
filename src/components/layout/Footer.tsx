@@ -9,20 +9,20 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className="container">
-        <div className={styles.grid}>
-          <div className={styles.identity}>
-            <p className={styles.name}>{PERSON.name}</p>
-            <p className={styles.role}>{PERSON.role}.</p>
-            <a className={`${styles.email} link`} href={`mailto:${PERSON.email}`}>
-              {PERSON.email}
-            </a>
-          </div>
+        <div className={styles.identity}>
+          <p className={styles.name}>{PERSON.name}</p>
+          <p className={styles.role}>{PERSON.role}.</p>
+          <a className={styles.email} href={`mailto:${PERSON.email}`}>
+            {PERSON.email}
+          </a>
+        </div>
 
+        <div className={styles.grid}>
           <nav aria-labelledby="footer-nav">
-            <p className="eyebrow" id="footer-nav">
+            <p className="label" id="footer-nav">
               Навигация
             </p>
-            <ul className={`${styles.list} ${styles.colTitle}`}>
+            <ul className={styles.list}>
               <li>
                 <Link href="/">Главная</Link>
               </li>
@@ -35,10 +35,10 @@ export function Footer() {
           </nav>
 
           <nav aria-labelledby="footer-projects">
-            <p className="eyebrow" id="footer-projects">
+            <p className="label" id="footer-projects">
               Проекты
             </p>
-            <ul className={`${styles.list} ${styles.colTitle}`}>
+            <ul className={styles.list}>
               {PROJECTS.map((project) => (
                 <li key={project.slug}>
                   <Link href={`/projects/${project.slug}`}>{project.name}</Link>
@@ -48,10 +48,10 @@ export function Footer() {
           </nav>
 
           <nav aria-labelledby="footer-social">
-            <p className="eyebrow" id="footer-social">
+            <p className="label" id="footer-social">
               Социальные сети
             </p>
-            <ul className={`${styles.list} ${styles.colTitle}`}>
+            <ul className={styles.list}>
               {CONFIRMED_SOCIALS.map((social) => (
                 <li key={social.key}>
                   <a href={social.url} target="_blank" rel="noopener noreferrer">

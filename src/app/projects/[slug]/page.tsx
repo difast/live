@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { JsonLd } from '@/components/ui/JsonLd';
-import { ProjectIndex } from '@/components/ui/ProjectIndex';
+import { ProjectList } from '@/components/ui/ProjectList';
 import { PROJECTS, getProject, otherProjects } from '@/content/projects';
+import type { CSSProperties } from 'react';
 import { PERSON } from '@/content/site';
 import { buildMetadata } from '@/lib/seo';
 import { hasPublicAsset } from '@/lib/assets';
@@ -65,6 +66,12 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
   const pageTitle = `${project.name} — проект Дмитрия Пятакова`;
   const rest = otherProjects(project.slug);
 
+  // Тон проекта задаётся переменными — шапка и акценты берут его из данных.
+  const tone = {
+    '--tone-tint': project.tone.tint,
+    '--tone-deep': project.tone.deep,
+  } as CSSProperties;
+
   return (
     <>
       <JsonLd
@@ -82,34 +89,36 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
       <Breadcrumbs crumbs={crumbs} />
 
       <article>
-        <header className={styles.head}>
+        <header className={styles.head} style={tone}>
           <div className={`container ${styles.headGrid}`}>
-            <p className={styles.index}>{project.index}</p>
             <div>
+              <span className={`numeral ${styles.numeral}`} aria-hidden="true">
+                {project.index}
+              </span>
+              <span className={`label ${styles.category}`}>{project.category}</span>
               <h1 className={styles.title}>{project.name}</h1>
-              <p className={`lead ${styles.tagline}`}>{project.tagline}</p>
+            </div>
 
-              <div className={styles.meta}>
-                <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>Категория</span>
-                  <span className={styles.metaValue}>{project.category}</span>
+            <div>
+              <p className={styles.tagline}>{project.tagline}</p>
+
+              <dl className={styles.meta}>
+                <div className={styles.metaRow}>
+                  <dt className={styles.metaLabel}>Статус</dt>
+                  <dd className={styles.metaValue}>{project.status}</dd>
                 </div>
-                <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>Статус</span>
-                  <span className={styles.metaValue}>{project.status}</span>
-                </div>
-                <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>Роль</span>
-                  <span className={styles.metaValue}>
+                <div className={styles.metaRow}>
+                  <dt className={styles.metaLabel}>Роль</dt>
+                  <dd className={styles.metaValue}>
                     {project.role},{' '}
                     <Link href="/about" className="link">
                       {PERSON.name}
                     </Link>
-                  </span>
+                  </dd>
                 </div>
-                <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>Сайт</span>
-                  <span className={styles.metaValue}>
+                <div className={styles.metaRow}>
+                  <dt className={styles.metaLabel}>Сайт</dt>
+                  <dd className={styles.metaValue}>
                     <a
                       className="link"
                       href={project.website}
@@ -118,20 +127,20 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                     >
                       {project.websiteLabel}
                     </a>
-                  </span>
+                  </dd>
                 </div>
-              </div>
+              </dl>
 
               <div className={styles.actions}>
                 <a
-                  className="button button--primary"
+                  className="action action--external"
                   href={project.website}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Официальный сайт ↗
+                  Официальный сайт
                 </a>
-                <Link href="/projects" className="button button--secondary">
+                <Link href="/projects" className="action action--quiet">
                   Все проекты
                 </Link>
               </div>
@@ -150,8 +159,11 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
                   ))}
                   {section.items && (
                     <ul className={styles.items}>
-                      {section.items.map((item) => (
+                      {section.items.map((item, i) => (
                         <li key={item} className={styles.item}>
+                          <span className={`numeral ${styles.itemNumber}`} aria-hidden="true">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
                           {item}
                         </li>
                       ))}
@@ -163,57 +175,51 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
           </div>
         </section>
 
-        <section className="section section--tight" aria-label="Официальный сайт проекта">
+        <section className="section section--tight band" aria-label="Официальный сайт проекта">
           <div className="container">
             <div className={styles.site}>
               <div>
-                <p className={styles.siteTitle}>{project.name}</p>
+                <p className="label">Официальный сайт</p>
+                <p className={styles.siteName}>{project.websiteLabel}</p>
                 <p className={styles.siteText}>
-                  Официальный сайт проекта — {project.websiteLabel}.
+                  Проект {project.name} — {project.role.toLowerCase()} Дмитрий Пятаков.
                 </p>
               </div>
               <a
-                className="button button--primary"
+                className="action action--external"
                 href={project.website}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Перейти на сайт ↗
+                Перейти на сайт
               </a>
             </div>
           </div>
         </section>
       </article>
 
-      <section className="section section--tight" aria-labelledby="related-heading">
-        <div className={`container ${styles.related}`}>
-          <p className="eyebrow">Связанное</p>
-          <div>
-            <h2 id="related-heading" className="visually-hidden">
-              Связанные страницы
-            </h2>
-            <div className={styles.relatedLinks}>
-              <Link href="/about" className="arrow-link">
-                {PERSON.name}
-              </Link>
-              <Link href="/projects" className="arrow-link">
-                Все проекты
-              </Link>
-              <Link href="/contact" className="arrow-link">
-                Контакты
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="section" aria-labelledby="other-projects-heading">
         <div className="container">
           <div className="section-head">
-            <p className="eyebrow">Другие проекты</p>
-            <h2 id="other-projects-heading">Ещё в портфеле</h2>
+            <div>
+              <p className="label">Другие проекты</p>
+              <h2 id="other-projects-heading">Ещё в портфеле</h2>
+            </div>
           </div>
-          <ProjectIndex projects={rest} />
+          <ProjectList projects={rest} />
+
+          {/* Связанные страницы: персона, индекс проектов, контакты. */}
+          <div className={styles.relatedLinks}>
+            <Link href="/about" className="action">
+              {PERSON.name}
+            </Link>
+            <Link href="/projects" className="action action--quiet">
+              Все проекты
+            </Link>
+            <Link href="/contact" className="action action--quiet">
+              Контакты
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -3,28 +3,28 @@
   gap: var(--space-l);
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 62rem) {
   .grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: clamp(3rem, 6vw, 6rem);
   }
 }
 
+/* Почта — главный элемент страницы, набрана как заголовок. */
 .emailBlock {
-  padding-bottom: var(--space-m);
-  border-bottom: 1px solid var(--hairline);
+  padding-bottom: var(--space-l);
+  border-bottom: 1px solid var(--rule);
 }
 
 .email {
   display: inline-block;
-  margin-top: var(--space-xs);
+  margin-top: var(--space-s);
   font-family: var(--font-display);
-  font-size: var(--step-3);
-  line-height: 1.15;
-  letter-spacing: -0.018em;
-  color: var(--ink);
-  transition: color var(--duration) var(--ease);
+  font-size: clamp(1.625rem, 1rem + 2.6vw, 3rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   word-break: break-word;
+  transition: color var(--duration) var(--ease);
 }
 
 .email:hover {
@@ -32,15 +32,19 @@
 }
 
 .note {
-  margin-top: var(--space-s);
-  color: var(--ink-muted);
+  margin-top: var(--space-m);
+  color: var(--ink-soft);
   max-width: 44ch;
-  font-size: var(--step--1);
   line-height: 1.6;
 }
 
+.block {
+  margin-top: var(--space-l);
+}
+
 .list {
-  border-top: 1px solid var(--hairline);
+  border-top: 1px solid var(--ink);
+  margin-top: var(--space-s);
 }
 
 .row {
@@ -49,7 +53,7 @@
   justify-content: space-between;
   gap: var(--space-s);
   padding-block: var(--space-s);
-  border-bottom: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--rule);
   transition: color var(--duration) var(--ease);
 }
 
@@ -58,16 +62,20 @@ a.row:hover {
 }
 
 .rowName {
-  font-size: var(--step-1);
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .rowMeta {
-  font-size: var(--step--1);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--ink-muted);
   text-align: right;
 }
 
-.rowPending {
-  color: var(--ink-muted);
+.after {
+  margin-top: var(--space-s);
 }

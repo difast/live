@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: PERSON.summary,
     start_url: '/',
     display: 'standalone',
-    background_color: '#fbfaf8',
-    theme_color: '#fbfaf8',
+    background_color: '#f6f3ed',
+    theme_color: '#f6f3ed',
     lang: 'ru',
     icons: [
       { src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
