@@ -6,10 +6,10 @@ import { Portrait } from '@/components/ui/Portrait';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { ProjectList } from '@/components/ui/ProjectList';
 import { PROJECTS } from '@/content/projects';
-import { CONFIRMED_SOCIALS, PERSON } from '@/content/site';
+import { CONFIRMED_SOCIALS, PERSON, PORTRAIT_BASE } from '@/content/site';
 import { TIMELINE } from '@/content/timeline';
 import { buildMetadata } from '@/lib/seo';
-import { hasPublicAsset } from '@/lib/assets';
+import { resolveImage } from '@/lib/assets';
 import { breadcrumbSchema, graph, webPageSchema, type Crumb } from '@/lib/schema';
 import styles from './About.module.css';
 
@@ -19,24 +19,25 @@ const DESCRIPTION =
 
 const CRUMBS: Crumb[] = [
   { name: 'Главная', path: '/' },
-  { name: 'Обо мне', path: '/about' },
+  { name: 'Биография', path: '/about' },
 ];
+
+// Портрет уходит в Open Graph только когда файл выложен: иначе соцсети
+// получили бы ссылку на несуществующее изображение вместо общей картинки.
+const portrait = resolveImage(PORTRAIT_BASE);
 
 export const metadata: Metadata = buildMetadata({
   title: TITLE,
   description: DESCRIPTION,
   path: '/about',
   type: 'profile',
-  image: {
-    path: PERSON.portrait,
-    width: 1200,
-    height: 1500,
-    alt: PERSON.portraitAlt,
-  },
+  image: portrait
+    ? { path: portrait, width: 1200, height: 1500, alt: PERSON.portraitAlt }
+    : undefined,
 });
 
 export default function AboutPage() {
-  const hasPortrait = hasPublicAsset(PERSON.portrait);
+  const hasPortrait = portrait !== null;
 
   return (
     <>
@@ -50,7 +51,7 @@ export default function AboutPage() {
       <Breadcrumbs crumbs={CRUMBS} />
 
       <PageHeader
-        eyebrow="Обо мне"
+        eyebrow="Биография"
         title="О Дмитрии Пятакове"
         intro="Предприниматель и создатель технологических компаний и продуктов."
       />
@@ -187,7 +188,7 @@ export default function AboutPage() {
           <div className="section-head">
             <div>
               <p className="label">Проекты</p>
-              <h2 id="about-projects-heading">Что я создаю</h2>
+              <h2 id="about-projects-heading">Компании и продукты</h2>
             </div>
           </div>
           <ProjectList projects={PROJECTS} />

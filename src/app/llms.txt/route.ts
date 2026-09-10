@@ -42,7 +42,7 @@ ${
 ## Страницы сайта
 
 - Главная: ${absoluteUrl('/')}
-- Обо мне: ${absoluteUrl('/about')}
+- Биография: ${absoluteUrl('/about')}
 - Проекты: ${absoluteUrl('/projects')}
 ${PROJECTS.map((p) => `- ${p.name}: ${absoluteUrl(`/projects/${p.slug}`)}`).join('\n')}
 - Социальные сети: ${absoluteUrl('/media')}

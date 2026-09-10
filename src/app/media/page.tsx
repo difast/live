@@ -4,9 +4,9 @@ import type { Metadata } from 'next';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { JsonLd } from '@/components/ui/JsonLd';
-import { SOCIALS, YOUTUBE_BANNER, type Social } from '@/content/site';
+import { SOCIALS, YOUTUBE_BANNER_BASE, type Social } from '@/content/site';
 import { buildMetadata } from '@/lib/seo';
-import { hasPublicAsset } from '@/lib/assets';
+import { resolveImage } from '@/lib/assets';
 import { breadcrumbSchema, graph, webPageSchema, type Crumb } from '@/lib/schema';
 import styles from './Media.module.css';
 
@@ -35,7 +35,7 @@ export default function MediaPage() {
   const youtube = byKey('youtube');
   const secondary = [byKey('instagram'), byKey('telegram')];
   const pending = SOCIALS.filter((s) => s.url === null);
-  const hasBanner = hasPublicAsset(YOUTUBE_BANNER.path);
+  const banner = resolveImage(YOUTUBE_BANNER_BASE);
 
   return (
     <>
@@ -51,7 +51,7 @@ export default function MediaPage() {
       <PageHeader
         eyebrow="Медиа"
         title="Социальные сети"
-        intro="Мои основные площадки, где я рассказываю о предпринимательстве, технологиях, AI, стартапах и создании продуктов."
+        intro="Официальные площадки, где Дмитрий Пятаков рассказывает о предпринимательстве, технологиях, AI, стартапах и создании продуктов."
       />
 
       {/* YouTube — главный блок страницы */}
@@ -71,9 +71,9 @@ export default function MediaPage() {
             rel="noopener noreferrer me"
           >
             <div className={styles.bannerFrame}>
-              {hasBanner ? (
+              {banner ? (
                 <Image
-                  src={YOUTUBE_BANNER.path}
+                  src={banner}
                   alt="Баннер YouTube-канала Дмитрия Пятакова"
                   fill
                   className={styles.banner}
@@ -81,12 +81,13 @@ export default function MediaPage() {
                   priority
                 />
               ) : (
-                // TODO(баннер): положить файл в public/images/dmitry-pyatakov/youtube-banner.jpg —
-                // он подхватится автоматически, менять код не нужно.
+                // TODO(баннер): положить файл в public/images/dmitry-pyatakov/
+                // с именем youtube-banner и любым обычным расширением
+                // (jpg, png, webp, avif) — он подхватится автоматически.
                 <div className={styles.bannerPlaceholder}>
                   <span className={styles.bannerPlaceholderTitle}>Дмитрий Пятаков</span>
                   <span className={styles.bannerPlaceholderNote}>
-                    Баннер канала · youtube-banner.jpg
+                    Баннер канала
                   </span>
                 </div>
               )}

@@ -80,13 +80,21 @@ public/images/            изображения бренда, см. README в �
 | Что                        | Где                                             |
 | -------------------------- | ----------------------------------------------- |
 | Продакшн-домен             | `NEXT_PUBLIC_SITE_URL` или `src/content/site.ts` |
-| Фотография                 | `public/images/dmitry-pyatakov/portrait.jpg`     |
-| Баннер YouTube             | `public/images/dmitry-pyatakov/youtube-banner.jpg` |
+| Фотография                 | `public/images/dmitry-pyatakov/portrait.*`       |
+| Баннер YouTube             | `public/images/dmitry-pyatakov/youtube-banner.*` |
 | Ссылки VK и Rutube         | `src/content/site.ts` → `SOCIALS`                |
 | Хронология                 | `src/content/timeline.ts`                        |
 
 Изображения подхватываются автоматически: пока файла нет, рендерится заглушка
 тех же пропорций, поэтому вёрстка не сдвигается. Правок кода не требуется.
+Расширение любое — `.jpg`, `.png`, `.webp` или `.avif`; важно только имя файла.
+
+## Стиль речи
+
+О Дмитрии Пятакове на сайте говорится **в третьем лице** — это официальный
+сайт, и весь машинный слой (title, description, JSON-LD, `llms.txt`) написан
+так же. К посетителю сайт обращается во втором лице там, где это уместно
+(страница контактов). Первого лица на сайте нет.
 
 ### Домен
 

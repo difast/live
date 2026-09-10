@@ -3,8 +3,10 @@ import {
   CONFIRMED_SOCIALS,
   OG_IMAGE,
   PERSON,
+  PORTRAIT_BASE,
   SITE_URL,
 } from '@/content/site';
+import { resolveImage } from '@/lib/assets';
 import { PROJECTS, type Project } from '@/content/projects';
 import { SITE_NAME } from '@/lib/seo';
 
@@ -29,6 +31,10 @@ type JsonLdObject = Record<string, unknown>;
 
 /** Сущность Person — ядро entity-графа. */
 export function personSchema(): JsonLdObject {
+  // Фотография попадает в разметку только когда файл действительно выложен:
+  // объявлять поисковым системам изображение, которого нет, вредно.
+  const portrait = resolveImage(PORTRAIT_BASE);
+
   return {
     '@type': 'Person',
     '@id': ID.person,
@@ -38,11 +44,13 @@ export function personSchema(): JsonLdObject {
     description: PERSON.summary,
     jobTitle: PERSON.role,
     email: `mailto:${PERSON.email}`,
-    image: {
-      '@type': 'ImageObject',
-      url: absoluteUrl(PERSON.portrait),
-      caption: PERSON.portraitAlt,
-    },
+    ...(portrait && {
+      image: {
+        '@type': 'ImageObject',
+        url: absoluteUrl(portrait),
+        caption: PERSON.portraitAlt,
+      },
+    }),
     // Только подтверждённые профили. Неподтверждённые в sameAs не попадают.
     sameAs: CONFIRMED_SOCIALS.map((s) => s.url),
     // Связь персоны с проектами: Дмитрий Пятаков → проекты → сайты проектов.

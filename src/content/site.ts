@@ -16,6 +16,14 @@ export function absoluteUrl(path = '/'): string {
   return path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`;
 }
 
+/**
+ * Базовые пути изображений — без расширения.
+ * Файл ищется по этим путям с любым обычным расширением (jpg, png, webp, avif).
+ * См. resolveImage в src/lib/assets.ts.
+ */
+export const PORTRAIT_BASE = '/images/dmitry-pyatakov/portrait';
+export const YOUTUBE_BANNER_BASE = '/images/dmitry-pyatakov/youtube-banner';
+
 export const PERSON = {
   name: 'Дмитрий Пятаков',
   /** Латиница — только там, где это технически необходимо (alternateName, en-метаданные). */
@@ -24,8 +32,8 @@ export const PERSON = {
   summary:
     'Дмитрий Пятаков — предприниматель и создатель технологических компаний и продуктов. Создаёт компании, продукты и системы на стыке технологий, бизнеса и AI.',
   email: 'ceo@oneononehq.com',
-  /** Портрет. TODO: заменить на реальную фотографию (см. public/images/dmitry-pyatakov/README.md). */
-  portrait: '/images/dmitry-pyatakov/portrait.jpg',
+  /** Объявленный путь портрета. Реальный файл ищется по PORTRAIT_BASE. */
+  portrait: `${PORTRAIT_BASE}.jpg`,
   portraitAlt: 'Дмитрий Пятаков — предприниматель и создатель технологических компаний',
 } as const;
 
@@ -54,7 +62,7 @@ export const SOCIALS: Social[] = [
     key: 'youtube',
     name: 'YouTube',
     handleTitle: 'Дмитрий Пятаков',
-    description: 'Создаю технологические компании и продукты с AI.',
+    description: 'Создаёт технологические компании и продукты с AI.',
     url: 'https://youtube.com/@pyatakov.official',
     primary: true,
   },
@@ -63,7 +71,7 @@ export const SOCIALS: Social[] = [
     name: 'Telegram',
     handleTitle: 'Дмитрий Пятаков',
     description:
-      'Предпринимательство, технологии, стартапы, AI и мой путь создания бизнеса.',
+      'Предпринимательство, технологии, стартапы, AI и путь создания бизнеса.',
     url: 'https://t.me/pyatakov_official',
     primary: true,
   },
@@ -101,7 +109,7 @@ export const CONFIRMED_SOCIALS = SOCIALS.filter(
 );
 
 export const NAV = [
-  { href: '/about', label: 'Обо мне' },
+  { href: '/about', label: 'Биография' },
   { href: '/projects', label: 'Проекты' },
   { href: '/media', label: 'Медиа' },
   { href: '/contact', label: 'Контакты' },
@@ -113,9 +121,8 @@ export const OG_IMAGE = {
   height: 630,
 } as const;
 
-/** YouTube-баннер канала. Реальный файл кладётся по этому пути. */
+/** Пропорции баннера канала. Сам файл ищется по YOUTUBE_BANNER_BASE. */
 export const YOUTUBE_BANNER = {
-  path: '/images/dmitry-pyatakov/youtube-banner.jpg',
   width: 2560,
   height: 1440,
 } as const;

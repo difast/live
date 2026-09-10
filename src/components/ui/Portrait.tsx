@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { PERSON } from '@/content/site';
-import { hasPublicAsset } from '@/lib/assets';
+import { PERSON, PORTRAIT_BASE } from '@/content/site';
+import { resolveImage } from '@/lib/assets';
 import styles from './Portrait.module.css';
 
 type Props = {
@@ -15,13 +15,13 @@ type Props = {
  * и подхватывается автоматически. До этого рендерится заглушка 4:5.
  */
 export function Portrait({ priority = false, sizes = '(min-width: 60rem) 26rem, 100vw' }: Props) {
-  const hasPhoto = hasPublicAsset(PERSON.portrait);
+  const photo = resolveImage(PORTRAIT_BASE);
 
   return (
     <figure className={styles.frame}>
-      {hasPhoto ? (
+      {photo ? (
         <Image
-          src={PERSON.portrait}
+          src={photo}
           alt={PERSON.portraitAlt}
           fill
           className={styles.image}

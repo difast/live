@@ -33,7 +33,7 @@ export default function HomePage() {
 
       <Hero />
 
-      {/* Кратко обо мне */}
+      {/* Кратко о Дмитрии Пятакове */}
       <section className="section band" aria-labelledby="about-heading">
         <div className={`container ${styles.about}`}>
           <div className={styles.aboutBody}>
@@ -54,7 +54,7 @@ export default function HomePage() {
             <p className="label">Кратко</p>
             <div className={styles.aboutLinks}>
               <Link href="/about" className="action">
-                Подробно обо мне
+                Биография
               </Link>
               <Link href="/projects" className="action action--quiet">
                 Все проекты
@@ -93,7 +93,7 @@ export default function HomePage() {
           <div className="section-head">
             <div>
               <p className="label">Направления</p>
-              <h2 id="focus-heading">Чем занимаюсь</h2>
+              <h2 id="focus-heading">Направления работы</h2>
             </div>
           </div>
           <ol className={styles.focusList}>
@@ -116,11 +116,10 @@ export default function HomePage() {
           <div className="section-head">
             <div>
               <p className="label">Медиа</p>
-              <h2 id="social-heading">Я в социальных сетях</h2>
+              <h2 id="social-heading">Социальные сети</h2>
             </div>
             <p className="lead">
-              Рассказываю о предпринимательстве, технологиях, стартапах и создании
-              продуктов.
+              О предпринимательстве, технологиях, стартапах и создании продуктов.
             </p>
           </div>
 

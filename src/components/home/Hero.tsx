@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import { CONFIRMED_SOCIALS, PERSON } from '@/content/site';
+import { CONFIRMED_SOCIALS, PORTRAIT_BASE } from '@/content/site';
 import { PROJECTS } from '@/content/projects';
 import { Portrait } from '@/components/ui/Portrait';
-import { hasPublicAsset } from '@/lib/assets';
+import { resolveImage } from '@/lib/assets';
 import styles from './Hero.module.css';
 
 /** Указатель по сайту: короткий ответ на вопрос «что здесь есть». */
 const SITE_INDEX = [
   { href: '/projects', title: 'Проекты', note: `${PROJECTS.length} действующих проекта` },
-  { href: '/about', title: 'Обо мне', note: 'Путь и направления работы' },
+  { href: '/about', title: 'Биография', note: 'Путь и направления работы' },
   { href: '/media', title: 'Медиа', note: 'YouTube, Telegram, Instagram' },
 ];
 
@@ -16,7 +16,7 @@ export function Hero() {
   // Пока реальной фотографии нет, разворот строится на одной типографике:
   // пустая рамка под портрет выглядела бы недоделанной. Как только файл
   // появится, композиция сама переключается на текст + портрет.
-  const hasPortrait = hasPublicAsset(PERSON.portrait);
+  const hasPortrait = resolveImage(PORTRAIT_BASE) !== null;
 
   return (
     <section className={styles.hero} aria-labelledby="hero-title">
@@ -37,7 +37,7 @@ export function Hero() {
                 Предприниматель и создатель технологических компаний и продуктов.
               </p>
               <p className={styles.statement}>
-                Создаю компании, продукты и системы на стыке технологий, бизнеса и AI.
+                Создаёт компании, продукты и системы на стыке технологий, бизнеса и AI.
               </p>
             </div>
 
@@ -46,7 +46,7 @@ export function Hero() {
                 Проекты
               </Link>
               <Link href="/about" className="action action--quiet">
-                Обо мне
+                Биография
               </Link>
             </div>
 
