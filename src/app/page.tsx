@@ -6,6 +6,8 @@ import { JsonLd } from '@/components/ui/JsonLd';
 import { FOCUS_AREAS } from '@/content/focus';
 import { PROJECTS } from '@/content/projects';
 import { CONFIRMED_SOCIALS, PERSON } from '@/content/site';
+import { ARTICLES_BY_DATE } from '@/content/articles';
+import { formatDate } from '@/lib/format';
 import { buildMetadata } from '@/lib/seo';
 import { graph, projectListSchema, webPageSchema } from '@/lib/schema';
 import styles from '@/components/home/Blocks.module.css';
@@ -109,6 +111,46 @@ export default function HomePage() {
           </ol>
         </div>
       </section>
+
+      {/* Тексты — появляются, когда есть хотя бы одна статья */}
+      {ARTICLES_BY_DATE.length > 0 && (
+        <section className="section" aria-labelledby="articles-heading">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <p className="label">Тексты</p>
+                <h2 id="articles-heading">Статьи</h2>
+              </div>
+              <p className="lead">
+                О создании компаний и продуктов, управлении командами и применении
+                технологий.
+              </p>
+            </div>
+
+            <ul className={styles.articleList}>
+              {ARTICLES_BY_DATE.slice(0, 3).map((article) => (
+                <li key={article.slug} className={styles.articleItem}>
+                  <Link href={`/articles/${article.slug}`} className={styles.articleLink}>
+                    <time className={styles.articleDate} dateTime={article.datePublished}>
+                      {formatDate(article.datePublished)}
+                    </time>
+                    <span>
+                      <span className={styles.articleTitle}>{article.title}</span>
+                      <span className={styles.articleExcerpt}>{article.description}</span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <p style={{ marginTop: 'var(--space-m)' }}>
+              <Link href="/articles" className="action">
+                Все статьи
+              </Link>
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* Медиа и социальные сети */}
       <section className="section band" aria-labelledby="social-heading">

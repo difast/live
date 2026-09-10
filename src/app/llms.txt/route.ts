@@ -1,4 +1,6 @@
 import { PROJECTS } from '@/content/projects';
+import { ARTICLES_BY_DATE } from '@/content/articles';
+import { VIDEOS_BY_DATE } from '@/content/videos';
 import { absoluteUrl, CONFIRMED_SOCIALS, PERSON, SOCIALS } from '@/content/site';
 
 /**
@@ -41,13 +43,24 @@ ${
         .join(', ')}.\n`
     : ''
 }
+${
+  ARTICLES_BY_DATE.length > 0
+    ? `## Статьи
+
+${ARTICLES_BY_DATE.map(
+        (a) => `- ${a.title} (${a.datePublished})\n  ${absoluteUrl(`/articles/${a.slug}`)}`,
+      ).join('\n')}\n`
+    : ''
+}
 ## Страницы сайта
 
 - Главная: ${absoluteUrl('/')}
 - Биография: ${absoluteUrl('/about')}
 - Проекты: ${absoluteUrl('/projects')}
 ${PROJECTS.map((p) => `- ${p.name}: ${absoluteUrl(`/projects/${p.slug}`)}`).join('\n')}
-- Социальные сети: ${absoluteUrl('/media')}
+${ARTICLES_BY_DATE.length > 0 ? `- Статьи: ${absoluteUrl('/articles')}\n` : ''}${
+  VIDEOS_BY_DATE.length > 0 ? `- Видео: ${absoluteUrl('/videos')}\n` : ''
+}- Социальные сети: ${absoluteUrl('/media')}
 - Контакты: ${absoluteUrl('/contact')}
 
 ## Контакт

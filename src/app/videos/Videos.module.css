@@ -1,0 +1,83 @@
+/* Карточки роликов: обложка, описание и ссылки на площадки. Плеера нет. */
+.grid {
+  display: grid;
+  gap: var(--space-l) var(--space-m);
+}
+
+@media (min-width: 48rem) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 76rem) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--paper-deep);
+  border: 1px solid var(--rule);
+}
+
+.coverImage {
+  object-fit: cover;
+}
+
+.date {
+  display: block;
+  margin-top: var(--space-s);
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.title {
+  margin-top: var(--space-2xs);
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+}
+
+.description {
+  margin-top: var(--space-2xs);
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s) var(--space-m);
+  margin-top: var(--space-s);
+  padding-top: var(--space-s);
+  border-top: 1px solid var(--rule);
+}
+
+/* Пустое состояние раздела */
+.empty {
+  max-width: 46ch;
+}
+
+.emptyText {
+  color: var(--ink-soft);
+  font-size: var(--step-1);
+  line-height: 1.65;
+}
+
+.emptyLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+  margin-top: var(--space-m);
+  padding-top: var(--space-m);
+  border-top: 1px solid var(--rule);
+}

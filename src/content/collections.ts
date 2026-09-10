@@ -1,5 +1,7 @@
 /**
- * Архитектура будущих контентных разделов: /articles, /interviews, /press, /speaking.
+ * Архитектура будущих контентных разделов: /interviews, /press, /speaking.
+ *
+ * Статьи и видео живут в собственных модулях — articles.ts и videos.ts.
  *
  * Разделы намеренно НЕ опубликованы, пока в них нет материалов — пустые страницы
  * вредят индексации. Машинерия готова: как только в `entries` появляется запись,
@@ -13,7 +15,7 @@
  *   3. Снять `published: false`. Sitemap подхватит раздел сам.
  */
 
-export type CollectionKey = 'articles' | 'interviews' | 'press' | 'speaking';
+export type CollectionKey = 'interviews' | 'press' | 'speaking';
 
 export type CollectionEntry = {
   slug: string;
@@ -42,14 +44,6 @@ export type Collection = {
 };
 
 export const COLLECTIONS: Collection[] = [
-  {
-    key: 'articles',
-    path: '/articles',
-    title: 'Статьи',
-    description: 'Статьи Дмитрия Пятакова о предпринимательстве, технологиях и продуктах.',
-    schemaType: 'Article',
-    entries: [],
-  },
   {
     key: 'interviews',
     path: '/interviews',

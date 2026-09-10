@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { absoluteUrl } from '@/content/site';
 import { PROJECTS } from '@/content/projects';
 import { ACTIVE_COLLECTIONS } from '@/content/collections';
+import { ARTICLES } from '@/content/articles';
+import { VIDEOS } from '@/content/videos';
 
 /**
  * Sitemap собирается из данных проекта, а не поддерживается вручную.
@@ -18,6 +20,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl('/media'), lastModified, changeFrequency: 'monthly', priority: 0.7 },
     { url: absoluteUrl('/contact'), lastModified, changeFrequency: 'yearly', priority: 0.6 },
   ];
+
+  // Разделы попадают в sitemap только когда в них есть материалы.
+  const articlePages: MetadataRoute.Sitemap =
+    ARTICLES.length === 0
+      ? []
+      : [
+          {
+            url: absoluteUrl('/articles'),
+            lastModified,
+            changeFrequency: 'weekly' as const,
+            priority: 0.8,
+          },
+          ...ARTICLES.map((article) => ({
+            url: absoluteUrl(`/articles/${article.slug}`),
+            lastModified: new Date(article.dateModified ?? article.datePublished),
+            changeFrequency: 'yearly' as const,
+            priority: 0.7,
+          })),
+        ];
+
+  const videoPages: MetadataRoute.Sitemap =
+    VIDEOS.length === 0
+      ? []
+      : [
+          {
+            url: absoluteUrl('/videos'),
+            lastModified,
+            changeFrequency: 'weekly' as const,
+            priority: 0.8,
+          },
+          ...VIDEOS.map((video) => ({
+            url: absoluteUrl(`/videos/${video.slug}`),
+            lastModified: new Date(video.datePublished),
+            changeFrequency: 'yearly' as const,
+            priority: 0.7,
+          })),
+        ];
 
   const projectPages: MetadataRoute.Sitemap = PROJECTS.map((project) => ({
     url: absoluteUrl(`/projects/${project.slug}`),
@@ -42,5 +81,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ]);
 
-  return [...staticPages, ...projectPages, ...collectionPages];
+  return [
+    ...staticPages,
+    ...projectPages,
+    ...articlePages,
+    ...videoPages,
+    ...collectionPages,
+  ];
 }

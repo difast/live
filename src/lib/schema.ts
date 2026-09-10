@@ -8,6 +8,8 @@ import {
 } from '@/content/site';
 import { resolveImage } from '@/lib/assets';
 import { PROJECTS, type Project } from '@/content/projects';
+import type { Article } from '@/content/articles';
+import type { Video } from '@/content/videos';
 import { SITE_NAME } from '@/lib/seo';
 
 /**
@@ -24,6 +26,8 @@ export const ID = {
   person: `${SITE_URL}/#person`,
   website: `${SITE_URL}/#website`,
   project: (slug: string) => `${SITE_URL}/projects/${slug}#project`,
+  article: (slug: string) => `${SITE_URL}/articles/${slug}#article`,
+  video: (slug: string) => `${SITE_URL}/videos/${slug}#video`,
   page: (path: string) => `${absoluteUrl(path)}#webpage`,
 } as const;
 
@@ -164,6 +168,69 @@ export function projectListSchema(): JsonLdObject {
       position: i + 1,
       url: absoluteUrl(`/projects/${p.slug}`),
       name: p.name,
+    })),
+  };
+}
+
+/** Статья: автор и издатель — одна и та же персона. */
+export function articleSchema(article: Article): JsonLdObject {
+  const url = absoluteUrl(`/articles/${article.slug}`);
+
+  return {
+    '@type': 'Article',
+    '@id': ID.article(article.slug),
+    headline: article.title,
+    description: article.description,
+    url,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified ?? article.datePublished,
+    inLanguage: 'ru-RU',
+    author: { '@id': ID.person },
+    publisher: { '@id': ID.person },
+    isPartOf: { '@id': ID.website },
+    mainEntityOfPage: { '@id': ID.page(`/articles/${article.slug}`) },
+  };
+}
+
+/**
+ * Видео. Плеер на сайте не встраивается, поэтому ссылка на ролик уходит
+ * в url — источником остаётся площадка.
+ */
+export function videoSchema(video: Video): JsonLdObject {
+  const watchUrl = video.youtubeUrl ?? video.rutubeUrl;
+
+  return {
+    '@type': 'VideoObject',
+    '@id': ID.video(video.slug),
+    name: video.title,
+    description: video.description,
+    thumbnailUrl: absoluteUrl(video.thumbnail),
+    uploadDate: video.datePublished,
+    inLanguage: 'ru-RU',
+    ...(watchUrl && { contentUrl: watchUrl, url: watchUrl }),
+    ...(video.duration && { duration: video.duration }),
+    author: { '@id': ID.person },
+    publisher: { '@id': ID.person },
+  };
+}
+
+/** Список материалов раздела. */
+export function itemListSchema(input: {
+  path: string;
+  name: string;
+  items: { url: string; name: string }[];
+}): JsonLdObject {
+  return {
+    '@type': 'ItemList',
+    '@id': `${absoluteUrl(input.path)}#list`,
+    name: input.name,
+    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    numberOfItems: input.items.length,
+    itemListElement: input.items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: item.url,
+      name: item.name,
     })),
   };
 }

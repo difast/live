@@ -1,3 +1,6 @@
+import { ARTICLES } from '@/content/articles';
+import { VIDEOS } from '@/content/videos';
+
 /**
  * Единый источник правды о сайте и о персоне.
  * Все канонические URL, метаданные, JSON-LD, sitemap и llms.txt читают отсюда.
@@ -92,12 +95,20 @@ export const CONFIRMED_SOCIALS = SOCIALS.filter(
   (s): s is Social & { url: string } => typeof s.url === 'string',
 );
 
-export const NAV = [
+type NavItem = { href: string; label: string };
+
+/**
+ * Навигация. Разделы со своим контентом добавляются только когда в них
+ * есть материалы — пустой пункт меню ведёт в никуда.
+ */
+export const NAV: NavItem[] = [
   { href: '/about', label: 'Биография' },
   { href: '/projects', label: 'Проекты' },
+  ...(ARTICLES.length > 0 ? [{ href: '/articles', label: 'Статьи' }] : []),
+  ...(VIDEOS.length > 0 ? [{ href: '/videos', label: 'Видео' }] : []),
   { href: '/media', label: 'Медиа' },
   { href: '/contact', label: 'Контакты' },
-] as const;
+];
 
 export const OG_IMAGE = {
   path: '/images/dmitry-pyatakov/og-default.jpg',

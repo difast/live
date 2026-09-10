@@ -37,7 +37,9 @@ export function buildMetadata({
     description,
     alternates: { canonical: url },
     robots: noIndex
-      ? { index: false, follow: false }
+      ? // follow оставляем: страницу не индексируем, но по ссылкам с неё
+        // краулер пройти должен.
+        { index: false, follow: true }
       : {
           index: true,
           follow: true,
