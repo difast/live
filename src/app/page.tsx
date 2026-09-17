@@ -15,7 +15,7 @@ import styles from '@/components/home/Blocks.module.css';
 
 const TITLE = 'Дмитрий Пятаков — предприниматель и создатель технологических компаний';
 const DESCRIPTION =
-  'Официальный сайт Дмитрия Пятакова. Предприниматель и создатель технологических компаний и продуктов: OneOnOne, Mevratek, ТехФабрика.';
+  'Официальный сайт Дмитрия Пятакова. Предприниматель и создатель технологических компаний и продуктов: OneOnOne, Mevratek, ТехФабрика, Panteon Chess.';
 
 export const metadata: Metadata = buildMetadata({
   title: TITLE,
@@ -78,7 +78,7 @@ export default function HomePage() {
               <h2 id="projects-heading">Компании и продукты</h2>
             </div>
             <p className="lead">
-              Действующие проекты в технологиях, робототехнике и образовании.
+              Четыре действующих проекта в технологиях, робототехнике и образовании.
             </p>
           </div>
         </div>
